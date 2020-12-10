@@ -1,0 +1,244 @@
+# Configuration changes to bring source (config-postSetup.gz) to target (config.ldif)
+# Comparison options:
+#   Ignore differences in configuration that is part of the topology registry
+#   Ignore differences on shared host
+#   Ignore differences by instance
+
+dsconfig create-scim-schema \
+    --schema-name urn:ietf:params:scim:schemas:core:2.0:Group  \
+    --set 'description:SCIM v2 Group Resource Type'  \
+    --set 'display-name:SCIM v2 Groups' 
+
+dsconfig create-scim-resource-type \
+    --type-name groups  \
+    --type ldap-mapping  \
+    --set enabled:true  \
+    --set endpoint:Groups  \
+    --set structural-ldap-objectclass:groupOfUniqueNames  \
+    --set include-base-dn:ou=Groups,dc=example,dc=com  \
+    --set create-dn-pattern:cn={cn},ou=Groups,dc=example,dc=com  \
+    --set core-schema:urn:ietf:params:scim:schemas:core:2.0:Group 
+
+dsconfig create-scim-attribute-mapping \
+    --type-name groups  \
+    --mapping-name cn  \
+    --set scim-resource-type-attribute:displayName  \
+    --set ldap-attribute:cn  \
+    --set searchable:true 
+
+dsconfig create-scim-attribute-mapping \
+    --type-name groups  \
+    --mapping-name members  \
+    --set scim-resource-type-attribute:members  \
+    --set ldap-attribute:uniqueMember  \
+    --set searchable:true 
+
+dsconfig create-scim-attribute-mapping \
+    --type-name groups  \
+    --mapping-name members.value  \
+    --set scim-resource-type-attribute:members  \
+    --set ldap-attribute:uniqueMember  \
+    --set searchable:true 
+
+dsconfig create-scim-attribute \
+    --schema-name urn:ietf:params:scim:schemas:core:2.0:Group  \
+    --attribute-name displayName  \
+    --set required:true  \
+    --set multi-valued:true 
+
+dsconfig create-scim-attribute \
+    --schema-name urn:ietf:params:scim:schemas:core:2.0:Group  \
+    --attribute-name members  \
+    --set type:complex  \
+    --set multi-valued:true 
+
+dsconfig create-scim-subattribute \
+    --schema-name urn:ietf:params:scim:schemas:core:2.0:Group  \
+    --attribute-name members  \
+    --subattribute-name $ref  \
+    --set type:reference  \
+    --set reference-type:User  \
+    --set reference-type:User.id 
+
+dsconfig create-scim-schema \
+    --schema-name urn:ietf:params:scim:schemas:core:2.0:User  \
+    --set 'description:SCIM v2 User Resource Type'  \
+    --set 'display-name:SCIM v2 User' 
+
+dsconfig create-scim-resource-type \
+    --type-name Users  \
+    --type ldap-mapping  \
+    --set enabled:true  \
+    --set endpoint:Users  \
+    --set schema-checking-option:allow-undefined-attributes  \
+    --set schema-checking-option:allow-undefined-sub-attributes  \
+    --set structural-ldap-objectclass:ubidPerson  \
+    --set include-base-dn:ou=People,dc=example,dc=com  \
+    --set create-dn-pattern:uid={uid},ou=provisioned2,ou=people,dc=example,dc=com  \
+    --set core-schema:urn:ietf:params:scim:schemas:core:2.0:User 
+
+dsconfig create-scim-attribute-mapping \
+    --type-name Users  \
+    --mapping-name active  \
+    --set scim-resource-type-attribute:active  \
+    --set ldap-attribute:ubidAccountVerified 
+
+dsconfig create-scim-attribute-mapping \
+    --type-name Users  \
+    --mapping-name name.familyName  \
+    --set scim-resource-type-attribute:name.familyName  \
+    --set ldap-attribute:sn  \
+    --set searchable:true 
+
+dsconfig create-scim-attribute-mapping \
+    --type-name Users  \
+    --mapping-name name.formatted  \
+    --set scim-resource-type-attribute:name.formatted  \
+    --set ldap-attribute:description  \
+    --set searchable:true 
+
+dsconfig create-scim-attribute-mapping \
+    --type-name Users  \
+    --mapping-name name.givenName  \
+    --set scim-resource-type-attribute:name.givenName  \
+    --set ldap-attribute:givenName  \
+    --set searchable:true 
+
+dsconfig create-scim-attribute-mapping \
+    --type-name Users  \
+    --mapping-name name.honorificPrefix  \
+    --set scim-resource-type-attribute:name.honorificPrefix  \
+    --set ldap-attribute:ubidHonorificPrefix 
+
+dsconfig create-scim-attribute-mapping \
+    --type-name Users  \
+    --mapping-name name.honorificSuffix  \
+    --set scim-resource-type-attribute:name.honorificSuffix  \
+    --set ldap-attribute:ubidHonorificSuffix 
+
+dsconfig create-scim-attribute-mapping \
+    --type-name Users  \
+    --mapping-name name.middleName  \
+    --set scim-resource-type-attribute:name.middleName  \
+    --set ldap-attribute:ubidMiddleName 
+
+dsconfig create-scim-attribute-mapping \
+    --type-name Users  \
+    --mapping-name name.nickName  \
+    --set scim-resource-type-attribute:name.nickName  \
+    --set ldap-attribute:ubidNickName 
+
+dsconfig create-scim-attribute-mapping \
+    --type-name Users  \
+    --mapping-name userName  \
+    --set scim-resource-type-attribute:userName  \
+    --set ldap-attribute:uid  \
+    --set searchable:true 
+
+dsconfig create-scim-attribute \
+    --schema-name urn:ietf:params:scim:schemas:core:2.0:User  \
+    --attribute-name active  \
+    --set type:boolean  \
+    --set returned:never 
+
+dsconfig create-scim-attribute \
+    --schema-name urn:ietf:params:scim:schemas:core:2.0:User  \
+    --attribute-name name  \
+    --set type:complex  \
+    --set returned:never 
+
+dsconfig create-scim-subattribute \
+    --schema-name urn:ietf:params:scim:schemas:core:2.0:User  \
+    --attribute-name name  \
+    --subattribute-name familyName 
+
+dsconfig create-scim-subattribute \
+    --schema-name urn:ietf:params:scim:schemas:core:2.0:User  \
+    --attribute-name name  \
+    --subattribute-name formatted+ 
+
+dsconfig create-scim-subattribute \
+    --schema-name urn:ietf:params:scim:schemas:core:2.0:User  \
+    --attribute-name name  \
+    --subattribute-name givenName 
+
+dsconfig create-scim-subattribute \
+    --schema-name urn:ietf:params:scim:schemas:core:2.0:User  \
+    --attribute-name name  \
+    --subattribute-name honorificPrefix 
+
+dsconfig create-scim-subattribute \
+    --schema-name urn:ietf:params:scim:schemas:core:2.0:User  \
+    --attribute-name name  \
+    --subattribute-name honorificSuffix 
+
+dsconfig create-scim-subattribute \
+    --schema-name urn:ietf:params:scim:schemas:core:2.0:User  \
+    --attribute-name name  \
+    --subattribute-name middleName 
+
+dsconfig create-scim-subattribute \
+    --schema-name urn:ietf:params:scim:schemas:core:2.0:User  \
+    --attribute-name name  \
+    --subattribute-name nickName 
+
+dsconfig create-scim-attribute \
+    --schema-name urn:ietf:params:scim:schemas:core:2.0:User  \
+    --attribute-name userName  \
+    --set required:true  \
+    --set case-exact:true 
+
+dsconfig create-access-token-validator \
+    --validator-name 'SCIM2 Mock Validator'  \
+    --type mock  \
+    --set enabled:true 
+
+dsconfig set-connection-handler-prop \
+    --handler-name 'HTTPS Connection Handler'  \
+    --add 'http-servlet-extension:Delegated Admin'  \
+    --add http-servlet-extension:SCIM  \
+    --add http-servlet-extension:Velocity 
+
+dsconfig set-http-servlet-extension-prop \
+    --extension-name SCIM  \
+    --set base-context-path:/scim/v1 
+
+dsconfig set-http-servlet-extension-prop \
+    --extension-name SCIM2  \
+    --set 'access-token-validator:SCIM2 Mock Validator' 
+
+dsconfig set-log-publisher-prop \
+    --publisher-name 'Debug ACI Logger'  \
+    --set enabled:true 
+
+dsconfig set-log-publisher-prop \
+    --publisher-name 'Debug Trace Logger'  \
+    --set enabled:true 
+
+dsconfig set-connection-handler-prop \
+    --handler-name 'HTTP Connection Handler'  \
+    --set enabled:true  \
+    --add http-servlet-extension:SCIM 
+
+dsconfig create-identity-mapper \
+    --mapper-name 'User ID Exact Match'  \
+    --type exact-match  \
+    --set enabled:true 
+
+dsconfig create-identity-mapper \
+    --mapper-name 'User ID Identity Mapper'  \
+    --type exact-match  \
+    --set enabled:true  \
+    --set match-attribute:cn  \
+    --set match-attribute:entryUUID  \
+    --set match-attribute:uid  \
+    --set match-base-dn:cn=config  \
+    --set match-base-dn:ou=people,dc=example,dc=com 
+
+dsconfig create-identity-mapper \
+    --mapper-name 'userid exact match mail'  \
+    --type exact-match  \
+    --set enabled:true  \
+    --set match-attribute:mail 
+
+
