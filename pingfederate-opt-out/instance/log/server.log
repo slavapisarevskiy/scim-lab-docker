@@ -1,0 +1,29 @@
+2020-12-11 03:41:32,804  INFO  [com.pingidentity.crypto.JCEManagerBase] Using cipher suites defined in com.pingidentity.crypto.SunJCEManager.xml
+2020-12-11 03:41:33,227  INFO  [com.pingidentity.crypto.CertificateServiceImpl] RSA key size 1024 is supported
+2020-12-11 03:41:33,227  INFO  [com.pingidentity.crypto.CertificateServiceImpl] RSA key size 2048 is supported
+2020-12-11 03:41:33,227  INFO  [com.pingidentity.crypto.CertificateServiceImpl] RSA key size 4096 is supported
+2020-12-11 03:41:33,231  INFO  [com.pingidentity.crypto.CertificateServiceImpl] Signature algorithm SHA256withRSA is supported
+2020-12-11 03:41:33,231  INFO  [com.pingidentity.crypto.CertificateServiceImpl] Signature algorithm SHA384withRSA is supported
+2020-12-11 03:41:33,231  INFO  [com.pingidentity.crypto.CertificateServiceImpl] Signature algorithm SHA512withRSA is supported
+2020-12-11 03:41:33,231  INFO  [com.pingidentity.crypto.CertificateServiceImpl] Selected 2048 as default key size for RSA
+2020-12-11 03:41:33,231  INFO  [com.pingidentity.crypto.CertificateServiceImpl] Selected SHA256withRSA as default signature algorithm for RSA
+2020-12-11 03:41:33,280  INFO  [com.pingidentity.crypto.CertificateServiceImpl] EC key size 256 is supported
+2020-12-11 03:41:33,280  INFO  [com.pingidentity.crypto.CertificateServiceImpl] EC key size 384 is supported
+2020-12-11 03:41:33,280  INFO  [com.pingidentity.crypto.CertificateServiceImpl] EC key size 521 is supported
+2020-12-11 03:41:33,284  INFO  [com.pingidentity.crypto.CertificateServiceImpl] Signature algorithm SHA256withECDSA is supported
+2020-12-11 03:41:33,286  INFO  [com.pingidentity.crypto.CertificateServiceImpl] Signature algorithm SHA384withECDSA is supported
+2020-12-11 03:41:33,289  INFO  [com.pingidentity.crypto.CertificateServiceImpl] Signature algorithm SHA512withECDSA is supported
+2020-12-11 03:41:33,289  INFO  [com.pingidentity.crypto.CertificateServiceImpl] Selected 256 as default key size for EC
+2020-12-11 03:41:33,290  INFO  [com.pingidentity.crypto.CertificateServiceImpl] Selected SHA256withECDSA as default signature algorithm for EC
+2020-12-11 03:41:34,927  INFO  [com.pingidentity.crypto.CertificateServiceImpl] Loaded 148 trust anchors from /opt/java/lib/security/cacerts
+2020-12-11 03:41:37,071  INFO  [org.sourceid.saml20.domain.mgmt.impl.MediatorImpl] Server is standalone.
+2020-12-11 03:41:39,874  INFO  [org.sourceid.saml20.domain.mgmt.impl.DataSourceManagerImpl] Initializing JNDI lookup
+2020-12-11 03:41:40,127  INFO  [org.eclipse.jetty.util.log] Logging initialized @21535ms to org.eclipse.jetty.util.log.Slf4jLog
+2020-12-11 03:41:40,789  INFO  [org.sourceid.saml20.domain.mgmt.impl.DataSourceManagerImpl] No Custom Attribute sources are loaded. Input file does not exist: /opt/out/instance/server/default/data/pingfederate-custom-ds.xml
+2020-12-11 03:41:44,016  INFO  [org.sourceid.websso.servlet.adapter.HandlerRegistry] Registering com.pingidentity.adapters.pingid.handler.PingIDResetAuthenticationHandler@6d8796c1 at /pingid-reset-primary-auth
+2020-12-11 03:41:44,016  INFO  [org.sourceid.websso.servlet.adapter.HandlerRegistry] Registering com.pingidentity.adapters.pingid.handler.PingIDResetAuthenticationHandler@6d8796c1 at /pingid-reset-primary-auth/
+2020-12-11 03:41:45,827  WARN  [org.eclipse.jetty.server.AbstractConnector] Ignoring deprecated socket close linger time
+2020-12-11 03:41:45,879  WARN  [org.eclipse.jetty.server.AbstractConnector] Ignoring deprecated socket close linger time
+2020-12-11 03:41:45,884  WARN  [org.eclipse.jetty.server.AbstractConnector] Ignoring deprecated socket close linger time
+2020-12-11 03:41:46,995  WARN  [org.eclipse.jetty.server.AbstractConnector] Ignoring deprecated socket close linger time
+2020-12-11 03:41:47,100  INFO  [org.eclipse.jetty.server.Server] jetty-9.4.18.v20190429patch5; built: 2020-01-22T23:47:18.414Z; git: e1bc35120a6617ee3df052294e433f3a25ce7097; jvm 11.0.9.1+1-LTS

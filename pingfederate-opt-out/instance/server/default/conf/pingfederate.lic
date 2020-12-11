@@ -1,0 +1,14 @@
+ID=00096741
+WSTrustSTS=true
+OAuth=true
+SaasProvisioning=true
+Product=PingFederate
+Version=10.1
+EnforcementType=3
+Tier=Free
+IssueDate=2020-12-10
+ExpirationDate=2021-01-09
+DeploymentMethod=Docker
+Organization=Ping Identity Corporation
+SignCode=FF0F
+Signature=302D02141F099BDE96C0E7C75424608FC7DB4DA41A217E3B021500930858129EBFB8DB0A55B6EE33855BFFF4D9CF9F
