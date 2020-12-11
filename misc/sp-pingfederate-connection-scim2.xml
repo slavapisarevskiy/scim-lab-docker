@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<md:EntityDescriptor entityID="SCIMv2_spconn" urn:name="SCIMv2" urn:baseUrl="https://localhost:9031" urn:LogLevel="STANDARD" urn:isActive="false" xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:urn="urn:sourceid.org:saml2:metadata-extension:v2">
+  <md:Extensions>
+    <urn:EntityExtension PFVersion="10.0.2.2" LicenseGroup="">
+      <urn:DigitialSignatureAliases includeX509inXmlSig="false" includeRawKeyInXmlSig="false"/>
+      <urn:Encryption>
+        <urn:EncryptionPolicy EncryptionAlgorithm="http://www.w3.org/2001/04/xmlenc#aes128-cbc" KeyTransportAlgorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p" EncryptAssertion="false" EncryptSubjectNameID="false" SLOEncryptSubjectNameID="false"/>
+        <urn:DecryptionPolicy AssertionEncrypted="false" SubjectNameIDEncrypted="false" AttributeEncrypted="false" SLOSubjectNameIDEncrypted="false"/>
+      </urn:Encryption>
+      <urn:Dependencies>
+        <urn:SigningKeyPairReference/>
+        <urn:DsigVerificationCert/>
+        <urn:SecondaryDsigVerificationCert/>
+        <urn:DecryptionKeyPairReference/>
+        <urn:SecondaryDecryptionKeyPairReference/>
+        <urn:EncryptionCert/>
+        <urn:SoapAuth>
+          <soap:Incoming xmlns:soap="http://www.sourceid.org/2004/04/soapauth"/>
+          <soap:Outgoing xmlns:soap="http://www.sourceid.org/2004/04/soapauth"/>
+        </urn:SoapAuth>
+        <urn:ConnectionModule ModuleClass="com.pingidentity.provisioner.domain.mgmt.ProvisionerConfig">
+          <urn:Data>
+            <saas:saasProvisioner version="1.0" xmlns:saas="http://pingidentity.com/2008/06/saas-provisioner">
+              <saas:saasProvisionerEntity>
+                <saas:entityId>SCIMv2_spconn</saas:entityId>
+                <saas:target id="scim">
+                  <saas:parameter name="SCIM_URL" value="http://u18-ssd1.sp.ping-eng.com:9080/scim/v2"/>
+                  <saas:parameter name="SCIM_VERSION" value="2.0"/>
+                  <saas:parameter name="AUTHENTICATION_METHOD" value="OAuth 2 Bearer Token"/>
+                  <saas:parameter name="Basic Authentication" value=""/>
+                  <saas:parameter name="BASIC_AUTH_USER" value="cn=dmanager"/>
+                  <saas:parameter name="BASIC_AUTH_PASSWORD" value="OBF:JWE:eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiQkY1M2tHSEZ2NiIsInZlcnNpb24iOiIxMC4wLjIuMiJ9..2UdHJyP8x7uZdeIf1O9EYg.zVddZ4SpaLVYH_Val_4skA.52fBa6jgmvgImxFofdhWXA"/>
+                  <saas:parameter name="OAuth 2 Bearer Token" value=""/>
+                  <saas:parameter name="OAUTH_ACCESS_TOKEN" value="OBF:JWE:eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiQkY1M2tHSEZ2NiIsInZlcnNpb24iOiIxMC4wLjIuMiJ9..CxXS-5RTELjzCKWgwIDHjQ.3B_ME-DJdEUBSDUIoaCXLb1-f7bPYeFQe4RHObN8xQYqPJzgDWqztcorKmd-rrkV_aVLUhW6elCzljmBk4sYHoGVXhKLkRtideQUVHfoEPvj-Xot9tx_yr1CtCDOuc0kN6Z0BiL1zM7AwHnfII62hw.Z0qwg4bCWPpyiJ2lFBVYFQ"/>
+                  <saas:parameter name="OAuth 2 Client Credentials" value=""/>
+                  <saas:parameter name="OAUTH_TOKEN_REQUEST" value=""/>
+                  <saas:parameter name="OAUTH_CLIENT_ID" value=""/>
+                  <saas:parameter name="OAUTH_CLIENT_SECRET" value="OBF:JWE:eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiQkY1M2tHSEZ2NiIsInZlcnNpb24iOiIxMC4wLjIuMiJ9..LTGlSEN7yYyGm5A3tT1PJA.63UklyPYhfEl9wWjqMLKtw.XTQ-m6V_Od_4TiuYQ1388Q"/>
+                  <saas:parameter name="SCIM Overrides" value=""/>
+                  <saas:parameter name="UNIQUE_USER_IDENTIFIER" value="userName"/>
+                  <saas:parameter name="USER_FILTER" value=""/>
+                  <saas:parameter name="AUTHORIZATION_TYPE" value=""/>
+                  <saas:parameter name="USERS_RESOURCE" value=""/>
+                  <saas:parameter name="GROUPS_RESOURCE" value=""/>
+                  <saas:parameter name="RESULTS_PER_PAGE" value="1000"/>
+                  <saas:parameter name="Provisioning Options" value=""/>
+                  <saas:parameter name="createNewUsers" value="true"/>
+                  <saas:parameter name="updateNewUsers" value="true"/>
+                  <saas:parameter name="disableNewUsers" value="true"/>
+                  <saas:parameter name="PROVISION_DISABLED_USERS" value="false"/>
+                  <saas:parameter name="REMOVE_ACTION" value="Delete"/>
+                  <saas:parameter name="GROUP_NAME_SOURCE" value="Common Name"/>
+                </saas:target>
+                <saas:channel id="2" name="ch444" active="true">
+                  <saas:maxThreads>1</saas:maxThreads>
+                  <saas:timeout>60</saas:timeout>
+                  <saas:source dataSourceId="LDAP-8C05E186F74E29DF98A734F689AA5B6FB14896A1">
+                    <saas:ldapGuidFormatter guidAttributeName="entryUUID" guidIsBinary="false"/>
+                    <saas:usersBaseDN>ou=ProvisioningContainer,ou=People,dc=pb,dc=com</saas:usersBaseDN>
+                    <saas:filter>(uid=*)</saas:filter>
+                    <saas:memberOfGroupAttributeName>isMemberOf</saas:memberOfGroupAttributeName>
+                    <saas:groupMemberAttributeName>uniqueMember</saas:groupMemberAttributeName>
+                    <saas:changedUsersAlgorithm>Timestamp</saas:changedUsersAlgorithm>
+                    <saas:timestampAttributeName>modifyTimestamp</saas:timestampAttributeName>
+                    <saas:userObjectClass>person</saas:userObjectClass>
+                    <saas:groupObjectClass>groupOfUniqueNames</saas:groupObjectClass>
+                    <saas:directoryIdentityAttributesMapper statusReader="Flag">
+                      <saas:attributeName>nsaccountlock</saas:attributeName>
+                      <saas:default>true</saas:default>
+                      <saas:comparisonValue>true</saas:comparisonValue>
+                      <saas:comparisonValueStatus>false</saas:comparisonValueStatus>
+                    </saas:directoryIdentityAttributesMapper>
+                    <saas:userNestedSearch>false</saas:userNestedSearch>
+                    <saas:groupNestedSearch>false</saas:groupNestedSearch>
+                  </saas:source>
+                  <saas:saasUsernameFieldCode>userName</saas:saasUsernameFieldCode>
+                  <saas:identityMappingField fieldName="userName">
+                    <saas:fieldInfo code="userName" label="userName">
+                      <saas:required>true</saas:required>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>uid</saas:attributes>
+                      <saas:default>NA</saas:default>
+                      <saas:extractCnFromDn>true</saas:extractCnFromDn>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="workEmail">
+                    <saas:fieldInfo code="workEmail" label="workEmail">
+                      <saas:unique>true</saas:unique>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="aimIm">
+                    <saas:fieldInfo code="aimIm" label="aimIm">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="certificates">
+                    <saas:fieldInfo code="certificates" label="certificates">
+                      <saas:multiValue>true</saas:multiValue>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="costCenter">
+                    <saas:fieldInfo code="costCenter" label="costCenter">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="department">
+                    <saas:fieldInfo code="department" label="department">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="displayName">
+                    <saas:fieldInfo code="displayName" label="displayName">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="division">
+                    <saas:fieldInfo code="division" label="division">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="employeeNumber">
+                    <saas:fieldInfo code="employeeNumber" label="employeeNumber">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="entitlements">
+                    <saas:fieldInfo code="entitlements" label="entitlements">
+                      <saas:multiValue>true</saas:multiValue>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="externalId">
+                    <saas:fieldInfo code="externalId" label="externalId">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="familyName">
+                    <saas:fieldInfo code="familyName" label="familyName">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>sn</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="faxPhone">
+                    <saas:fieldInfo code="faxPhone" label="faxPhone">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="formattedName">
+                    <saas:fieldInfo code="formattedName" label="formattedName">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:createOnly>true</saas:createOnly>
+                      <saas:attributes>cn</saas:attributes>
+                      <saas:default>NA</saas:default>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="givenName">
+                    <saas:fieldInfo code="givenName" label="givenName">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="gtalkIm">
+                    <saas:fieldInfo code="gtalkIm" label="gtalkIm">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="homeCity">
+                    <saas:fieldInfo code="homeCity" label="homeCity">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="homeCountry">
+                    <saas:fieldInfo code="homeCountry" label="homeCountry">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="homeFormattedAddress">
+                    <saas:fieldInfo code="homeFormattedAddress" label="homeFormattedAddress">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="homePhone">
+                    <saas:fieldInfo code="homePhone" label="homePhone">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="homePostalCode">
+                    <saas:fieldInfo code="homePostalCode" label="homePostalCode">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="homeState">
+                    <saas:fieldInfo code="homeState" label="homeState">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="homeStreetAddress">
+                    <saas:fieldInfo code="homeStreetAddress" label="homeStreetAddress">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="honorificPrefix">
+                    <saas:fieldInfo code="honorificPrefix" label="honorificPrefix">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="honorificSuffix">
+                    <saas:fieldInfo code="honorificSuffix" label="honorificSuffix">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="icqIm">
+                    <saas:fieldInfo code="icqIm" label="icqIm">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="locale">
+                    <saas:fieldInfo code="locale" label="locale">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="manager">
+                    <saas:fieldInfo code="manager" label="manager">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="middleName">
+                    <saas:fieldInfo code="middleName" label="middleName">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="mobilePhone">
+                    <saas:fieldInfo code="mobilePhone" label="mobilePhone">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="msnIm">
+                    <saas:fieldInfo code="msnIm" label="msnIm">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="nickName">
+                    <saas:fieldInfo code="nickName" label="nickName">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="organization">
+                    <saas:fieldInfo code="organization" label="organization">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="otherCity">
+                    <saas:fieldInfo code="otherCity" label="otherCity">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="otherCountry">
+                    <saas:fieldInfo code="otherCountry" label="otherCountry">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="otherFormattedAddress">
+                    <saas:fieldInfo code="otherFormattedAddress" label="otherFormattedAddress">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="otherPhone">
+                    <saas:fieldInfo code="otherPhone" label="otherPhone">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="otherPostalCode">
+                    <saas:fieldInfo code="otherPostalCode" label="otherPostalCode">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="otherState">
+                    <saas:fieldInfo code="otherState" label="otherState">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="otherStreetAddress">
+                    <saas:fieldInfo code="otherStreetAddress" label="otherStreetAddress">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="pagerPhone">
+                    <saas:fieldInfo code="pagerPhone" label="pagerPhone">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="password">
+                    <saas:fieldInfo code="password" label="password">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="preferredLanguage">
+                    <saas:fieldInfo code="preferredLanguage" label="preferredLanguage">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="profilePhotoUrl">
+                    <saas:fieldInfo code="profilePhotoUrl" label="profilePhotoUrl">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="profileThumbnailUrl">
+                    <saas:fieldInfo code="profileThumbnailUrl" label="profileThumbnailUrl">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="profileUrl">
+                    <saas:fieldInfo code="profileUrl" label="profileUrl">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="qqIm">
+                    <saas:fieldInfo code="qqIm" label="qqIm">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="roles">
+                    <saas:fieldInfo code="roles" label="roles">
+                      <saas:multiValue>true</saas:multiValue>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="skypeIm">
+                    <saas:fieldInfo code="skypeIm" label="skypeIm">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="timeZone">
+                    <saas:fieldInfo code="timeZone" label="timeZone">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="title">
+                    <saas:fieldInfo code="title" label="title">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="userType">
+                    <saas:fieldInfo code="userType" label="userType">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="workCity">
+                    <saas:fieldInfo code="workCity" label="workCity">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="workCountry">
+                    <saas:fieldInfo code="workCountry" label="workCountry">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="workFormattedAddress">
+                    <saas:fieldInfo code="workFormattedAddress" label="workFormattedAddress">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="workPhone">
+                    <saas:fieldInfo code="workPhone" label="workPhone">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="workPostalCode">
+                    <saas:fieldInfo code="workPostalCode" label="workPostalCode">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="workState">
+                    <saas:fieldInfo code="workState" label="workState">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="workStreetAddress">
+                    <saas:fieldInfo code="workStreetAddress" label="workStreetAddress">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="xmppIm">
+                    <saas:fieldInfo code="xmppIm" label="xmppIm">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="yahooIm">
+                    <saas:fieldInfo code="yahooIm" label="yahooIm">
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                </saas:channel>
+                <saas:Scim/>
+              </saas:saasProvisionerEntity>
+            </saas:saasProvisioner>
+          </urn:Data>
+        </urn:ConnectionModule>
+      </urn:Dependencies>
+      <urn:ConnectionTemplateProperties/>
+      <urn:MetadataUrlId xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+      <urn:enableAutoMetadataUpdate>false</urn:enableAutoMetadataUpdate>
+      <urn:AdditionalAllowedEntitiesConfiguration>
+        <urn:AllowAdditionalEntities>false</urn:AllowAdditionalEntities>
+        <urn:AllowAllEntities>false</urn:AllowAllEntities>
+        <urn:AdditionalAllowedEntities/>
+      </urn:AdditionalAllowedEntitiesConfiguration>
+    </urn:EntityExtension>
+  </md:Extensions>
+  <md:RoleDescriptor protocolSupportEnumeration="pingfederate:protocol:noop" xsi:type="urn:PFNoopRoleDescriptorType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <md:Extensions>
+      <urn:RoleExtension/>
+    </md:Extensions>
+  </md:RoleDescriptor>
+  <md:RoleDescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol" xsi:type="urn:PFAvailableCertsRoleDescriptorType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+  <md:ContactPerson contactType="administrative"/>
+</md:EntityDescriptor>

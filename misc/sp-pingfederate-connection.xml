@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<md:EntityDescriptor entityID="SCIMv1_spconn" urn:name="SCIMv1" urn:LogLevel="STANDARD" urn:isActive="true" xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:urn="urn:sourceid.org:saml2:metadata-extension:v2">
+  <md:Extensions>
+    <urn:EntityExtension PFVersion="10.0.2.2" LicenseGroup="">
+      <urn:DigitialSignatureAliases includeX509inXmlSig="false" includeRawKeyInXmlSig="false"/>
+      <urn:Encryption>
+        <urn:EncryptionPolicy EncryptionAlgorithm="http://www.w3.org/2001/04/xmlenc#aes128-cbc" KeyTransportAlgorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p" EncryptAssertion="false" EncryptSubjectNameID="false" SLOEncryptSubjectNameID="false"/>
+        <urn:DecryptionPolicy AssertionEncrypted="false" SubjectNameIDEncrypted="false" AttributeEncrypted="false" SLOSubjectNameIDEncrypted="false"/>
+      </urn:Encryption>
+      <urn:Dependencies>
+        <urn:SigningKeyPairReference/>
+        <urn:DsigVerificationCert/>
+        <urn:SecondaryDsigVerificationCert/>
+        <urn:DecryptionKeyPairReference/>
+        <urn:SecondaryDecryptionKeyPairReference/>
+        <urn:EncryptionCert/>
+        <urn:SoapAuth>
+          <soap:Incoming xmlns:soap="http://www.sourceid.org/2004/04/soapauth"/>
+          <soap:Outgoing xmlns:soap="http://www.sourceid.org/2004/04/soapauth"/>
+        </urn:SoapAuth>
+        <urn:ConnectionModule ModuleClass="com.pingidentity.provisioner.domain.mgmt.ProvisionerConfig">
+          <urn:Data>
+            <saas:saasProvisioner version="1.0" xmlns:saas="http://pingidentity.com/2008/06/saas-provisioner">
+              <saas:saasProvisionerEntity>
+                <saas:entityId>SCIMv1_spconn</saas:entityId>
+                <saas:target id="SCIM11">
+                  <saas:parameter name="usersUrl" value="http://172.16.64.1:18080/scim/v1/Users"/>
+                  <saas:parameter name="groupsUrl" value="http://172.16.64.1:18080/scim/v1/Groups"/>
+                  <saas:parameter name="authentication" value="basic"/>
+                  <saas:parameter name="basicAuthUser" value="cn=administrator"/>
+                  <saas:parameter name="basicAuthPass" value="OBF:JWE:eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiQkY1M2tHSEZ2NiIsInZlcnNpb24iOiIxMC4wLjIuMiJ9..vyW3hUrOUoSzBxI6nK5Osw.5oyc6zvMLgEUid-PbgAEiQ.tlbOD1jxOMIgnYHe01OTwQ"/>
+                  <saas:parameter name="clientId" value=""/>
+                  <saas:parameter name="clientSecret" value="OBF:JWE:eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiQkY1M2tHSEZ2NiIsInZlcnNpb24iOiIxMC4wLjIuMiJ9..T_5JhdYGn6WPiwTq90-u4A.D67_DcEJb4i6toKJyrYrlQ.945aPhXWnA8wiIXRDGoksg"/>
+                  <saas:parameter name="tokenEndpoint" value=""/>
+                  <saas:parameter name="isPatchSupported" value="true"/>
+                  <saas:parameter name="useDnAsGroupName" value="false"/>
+                  <saas:parameter name="deprovisionMethod" value="deleteUser"/>
+                  <saas:parameter name="rateLimitErrorCode" value="429"/>
+                </saas:target>
+                <saas:channel id="4" name="SCIMv1_channel11" active="true">
+                  <saas:maxThreads>1</saas:maxThreads>
+                  <saas:timeout>60</saas:timeout>
+                  <saas:source dataSourceId="LDAP-8C05E186F74E29DF98A734F689AA5B6FB14896A1">
+                    <saas:ldapGuidFormatter guidAttributeName="entryUUID" guidIsBinary="false"/>
+                    <saas:usersBaseDN>dc=pb,dc=com</saas:usersBaseDN>
+                    <saas:groupDN>cn=UsersToProvision,ou=GroupsGroups,dc=pb,dc=com</saas:groupDN>
+                    <saas:memberOfGroupAttributeName>isMemberOf</saas:memberOfGroupAttributeName>
+                    <saas:groupDNForGroups>cn=GroupsToProvision,ou=GroupsGroups,dc=pb,dc=com</saas:groupDNForGroups>
+                    <saas:groupMemberAttributeName>uniqueMember</saas:groupMemberAttributeName>
+                    <saas:changedUsersAlgorithm>Timestamp</saas:changedUsersAlgorithm>
+                    <saas:timestampAttributeName>modifyTimestamp</saas:timestampAttributeName>
+                    <saas:userObjectClass>person</saas:userObjectClass>
+                    <saas:groupObjectClass>groupOfUniqueNames</saas:groupObjectClass>
+                    <saas:directoryIdentityAttributesMapper statusReader="Flag">
+                      <saas:attributeName>nsaccountlock</saas:attributeName>
+                      <saas:default>true</saas:default>
+                      <saas:comparisonValue>true</saas:comparisonValue>
+                      <saas:comparisonValueStatus>false</saas:comparisonValueStatus>
+                    </saas:directoryIdentityAttributesMapper>
+                    <saas:userNestedSearch>false</saas:userNestedSearch>
+                    <saas:groupNestedSearch>false</saas:groupNestedSearch>
+                  </saas:source>
+                  <saas:saasUsernameFieldCode>userName</saas:saasUsernameFieldCode>
+                  <saas:identityMappingField fieldName="userName">
+                    <saas:fieldInfo code="userName" label="Username">
+                      <saas:required>true</saas:required>
+                      <saas:unique>true</saas:unique>
+                      <saas:minLength>1</saas:minLength>
+                      <saas:note>Unique identifier for the User, typically used by the user to directly authenticate to the service provider. Often displayed to the user as their unique identifier within the system. Each User MUST include a non-empty userName value. This identifier MUST be unique across the Service Consumer's entire set of Users.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>uid</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="formattedName">
+                    <saas:fieldInfo code="formattedName" label="Formatted Name">
+                      <saas:note>The full name, including all middle names, titles, and suffixes as appropriate, formatted for display (e.g. Ms. Barbara Jane Jensen, III.).</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>cn</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="familyName">
+                    <saas:fieldInfo code="familyName" label="Family Name">
+                      <saas:note>The family name of the User, or "Last Name" in most Western languages (e.g. Jensen given the full name Ms. Barbara Jane Jensen, III.).</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>sn</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="givenName">
+                    <saas:fieldInfo code="givenName" label="Given Name">
+                      <saas:note>The given name of the User, or "First Name" in most Western languages (e.g. Barbara given the full name Ms. Barbara Jane Jensen, III.).</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>givenName</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="middleName">
+                    <saas:fieldInfo code="middleName" label="Middle Name">
+                      <saas:note>The middle name(s) of the User (e.g. Jane given the full name Ms. Barbara Jane Jensen, III.).</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="honorificPrefix">
+                    <saas:fieldInfo code="honorificPrefix" label="Honorific Prefix">
+                      <saas:note>The honorific prefix(es) of the User, or "Title" in most Western languages (e.g. Ms. given the full name Ms. Barbara Jane Jensen, III.).</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="honorificSuffix">
+                    <saas:fieldInfo code="honorificSuffix" label="Honorific Suffix">
+                      <saas:note>The honorific suffix(es) of the User, or "Suffix" in most Western languages (e.g. III. given the full name Ms. Barbara Jane Jensen, III.).</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>generationQualifier</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="displayName">
+                    <saas:fieldInfo code="displayName" label="Display Name">
+                      <saas:note>The name of the User, suitable for display to end-users. Each User returned MAY include a non-empty displayName value. The name SHOULD be the full name of the User being described if known (e.g. Babs Jensen or Ms. Barbara J Jensen, III), but MAY be a username or handle, if that is all that is available (e.g. bjensen). The value provided SHOULD be the primary textual label by which this User is normally displayed by the Service Provider when presenting it to end-users.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>displayName</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="nickName">
+                    <saas:fieldInfo code="nickName" label="Nickname">
+                      <saas:note>The casual way to address the user in real life, e.g. "Bob" or "Bobby" instead of "Robert". This attribute SHOULD NOT be used to represent a User's username (e.g. bjensen or mpepperidge).</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="profileUrl">
+                    <saas:fieldInfo code="profileUrl" label="Profile URL">
+                      <saas:note>A fully qualified URL to a page representing the User's online profile.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="title">
+                    <saas:fieldInfo code="title" label="Title">
+                      <saas:note>The user's title, such as "Vice President."</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>title</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="userType">
+                    <saas:fieldInfo code="userType" label="User Type">
+                      <saas:note>Used to identify the organization to user relationship. Typical values used might be "Contractor", "Employee", "Intern", "Temp", "External", and "Unknown" but any value may be used.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="preferredLanguage">
+                    <saas:fieldInfo code="preferredLanguage" label="Preferred Language">
+                      <saas:note>Indicates the User's preferred written or spoken language. Generally used for selecting a localized User interface. Valid values are concatenation of the ISO 639-1 two letter language code, an underscore, and the ISO 3166-1 2 letter country code; e.g., 'en_US' specifies the language English and country US.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="locale">
+                    <saas:fieldInfo code="locale" label="Locale">
+                      <saas:note>Used to indicate the User's default location for purposes of localizing items such as currency, date time format, numerical representations, etc. A locale value is a concatenation of the ISO 639-1 two letter language code, an underscore, and the ISO 3166-1 two letter country code; e.g., 'en_US' specifies the language English and country US.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="timezone">
+                    <saas:fieldInfo code="timezone" label="Timezone">
+                      <saas:note>The User's time zone in the "Olson" timezone database format; e.g.,'America/Los_Angeles'.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="password">
+                    <saas:fieldInfo code="password" label="Password">
+                      <saas:note>The User's clear text password. This attribute is intended to be used as a means to specify an initial password when creating a new User or to reset an existing User's password. No accepted standards exist to convey password policies, hence Consumers should expect Service Providers to reject password values.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:createOnly>true</saas:createOnly>
+                      <saas:mask>true</saas:mask>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="email">
+                    <saas:fieldInfo code="email" label="Email">
+                      <saas:note>E-mail address for the User. The value SHOULD be canonicalized by the Service Provider, e.g. bjensen@example.com instead of bjensen@EXAMPLE.COM.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>mail</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="emailType">
+                    <saas:fieldInfo code="emailType" label="Email Type">
+                      <saas:option code="work" label="work"/>
+                      <saas:option code="home" label="home"/>
+                      <saas:option code="other" label="other"/>
+                      <saas:note>Canonical Type values of work, home, and other.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:default>work</saas:default>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="phoneNumber">
+                    <saas:fieldInfo code="phoneNumber" label="Phone Number">
+                      <saas:note>Phone number for the User. The value SHOULD be canonicalized by the Service Provider according to format in RFC3966 e.g. 'tel:+1-201-555-0123'.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>telephoneNumber</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="phoneNumberType">
+                    <saas:fieldInfo code="phoneNumberType" label="Phone Number Type">
+                      <saas:option code="work" label="work"/>
+                      <saas:option code="home" label="home"/>
+                      <saas:option code="mobile" label="mobile"/>
+                      <saas:option code="fax" label="fax"/>
+                      <saas:option code="pager" label="pager"/>
+                      <saas:option code="other" label="other"/>
+                      <saas:note>Canonical Type values of work, home, mobile, fax, pager and other.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:default>work</saas:default>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="ims">
+                    <saas:fieldInfo code="ims" label="Instant Messaging Address">
+                      <saas:note>Instant messaging address for the User.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="imsType">
+                    <saas:fieldInfo code="imsType" label="Instant Messaging Type">
+                      <saas:option code="aim" label="aim"/>
+                      <saas:option code="gtalk" label="gtalk"/>
+                      <saas:option code="icq" label="icq"/>
+                      <saas:option code="xmpp" label="xmpp"/>
+                      <saas:option code="msn" label="msn"/>
+                      <saas:option code="skype" label="skype"/>
+                      <saas:option code="qq" label="qq"/>
+                      <saas:option code="yahoo" label="yahoo"/>
+                      <saas:note>This attribute defines the following Canonical Values to represent currently popular IM services: aim, gtalk, icq, xmpp, msn, skype, qq, and yahoo.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="photo">
+                    <saas:fieldInfo code="photo" label="Photo">
+                      <saas:note>URL of a photo of the User. The value SHOULD be a canonicalized URL, and MUST point to an image file (e.g. a GIF, JPEG, or PNG image file) rather than to a web page containing an image.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="photoType">
+                    <saas:fieldInfo code="photoType" label="Photo Type">
+                      <saas:note>This attribute defines the following Canonical Values to represent popular photo sizes: photo, thumbnail.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="formattedAddress">
+                    <saas:fieldInfo code="formattedAddress" label="Formatted Address">
+                      <saas:note>The full mailing address, formatted for display or use with a mailing label. This attribute MAY contain newlines.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="streetAddress">
+                    <saas:fieldInfo code="streetAddress" label="Street Address">
+                      <saas:note>The full street address component, which may include house number, street name, P.O. box, and multi-line extended street address information. This attribute MAY contain newlines.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>streetAddress</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="locality">
+                    <saas:fieldInfo code="locality" label="Locality">
+                      <saas:note>The city or locality component.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>l</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="region">
+                    <saas:fieldInfo code="region" label="Region">
+                      <saas:note>The state or region component.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>st</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="postalCode">
+                    <saas:fieldInfo code="postalCode" label="Zip/Postal Code">
+                      <saas:note>The zipcode or postal code component.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>postalCode</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="country">
+                    <saas:fieldInfo code="country" label="Country">
+                      <saas:note>The country name component. When specified the value MUST be in ISO 3166-1 alpha 2 "short" code format; e.g., the United States and Sweden are "US" and "SE", respectively.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>c</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="addressType">
+                    <saas:fieldInfo code="addressType" label="Address Type">
+                      <saas:option code="work" label="work"/>
+                      <saas:option code="home" label="home"/>
+                      <saas:option code="other" label="other"/>
+                      <saas:note>This address type can be work, home, or other.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:default>home</saas:default>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="entitlements">
+                    <saas:fieldInfo code="entitlements" label="Entitlements">
+                      <saas:multiValue>true</saas:multiValue>
+                      <saas:note>A list of entitlements for the User that represent a thing the User has. That is, an entitlement is an additional right to a thing, object or service.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="roles">
+                    <saas:fieldInfo code="roles" label="Roles">
+                      <saas:multiValue>true</saas:multiValue>
+                      <saas:note>A list of roles for the User that collectively represent who the User is; e.g., "Student", "Faculty". No vocabulary or syntax is specified though it is expected that a role value is a String or label representing a collection of entitlements.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="x509Certificates">
+                    <saas:fieldInfo code="x509Certificates" label="User Certificates">
+                      <saas:multiValue>true</saas:multiValue>
+                      <saas:note>A list of certificates issued to the User. Values are Binary and DER encoded x509.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="ldapAttributesMap">
+                    <saas:fieldInfo code="ldapAttributesMap" label="LDAP Attributes Map">
+                      <saas:note>A map of the raw LDAP attributes that can be used by the SCIM Service Provider for additional processing. This attribute is not part of the SCIM 1.1 specification, hence it is only useful if the service provider explicitly reads this attribute (i.e. PingOne).</saas:note>
+                      <saas:ldapMap>true</saas:ldapMap>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                </saas:channel>
+                <saas:channel id="5" name="SCIMv1_channel22_AD" active="true">
+                  <saas:maxThreads>1</saas:maxThreads>
+                  <saas:timeout>60</saas:timeout>
+                  <saas:source dataSourceId="LDAP-218F212EF3FDBB990E1B1E0C8699276AF84E4C94">
+                    <saas:ldapGuidFormatter guidAttributeName="objectGUID" guidIsBinary="true"/>
+                    <saas:usersBaseDN>DC=o365,DC=lab</saas:usersBaseDN>
+                    <saas:groupDN>CN=UsersToProvision,CN=Users,DC=o365,DC=lab</saas:groupDN>
+                    <saas:memberOfGroupAttributeName>memberof</saas:memberOfGroupAttributeName>
+                    <saas:groupDNForGroups>CN=GroupsToProvision,CN=Users,DC=o365,DC=lab</saas:groupDNForGroups>
+                    <saas:groupMemberAttributeName>member</saas:groupMemberAttributeName>
+                    <saas:changedUsersAlgorithm>Active Directory USN</saas:changedUsersAlgorithm>
+                    <saas:usnAttributeName>uSNChanged</saas:usnAttributeName>
+                    <saas:timestampAttributeName>modifyTimestamp</saas:timestampAttributeName>
+                    <saas:userObjectClass>user</saas:userObjectClass>
+                    <saas:groupObjectClass>group</saas:groupObjectClass>
+                    <saas:directoryIdentityAttributesMapper statusReader="Active Directory Bitmap">
+                      <saas:attributeName>userAccountControl</saas:attributeName>
+                      <saas:default>true</saas:default>
+                    </saas:directoryIdentityAttributesMapper>
+                    <saas:userNestedSearch>true</saas:userNestedSearch>
+                    <saas:groupNestedSearch>true</saas:groupNestedSearch>
+                  </saas:source>
+                  <saas:saasUsernameFieldCode>userName</saas:saasUsernameFieldCode>
+                  <saas:identityMappingField fieldName="userName">
+                    <saas:fieldInfo code="userName" label="Username">
+                      <saas:required>true</saas:required>
+                      <saas:unique>true</saas:unique>
+                      <saas:minLength>1</saas:minLength>
+                      <saas:note>Unique identifier for the User, typically used by the user to directly authenticate to the service provider. Often displayed to the user as their unique identifier within the system. Each User MUST include a non-empty userName value. This identifier MUST be unique across the Service Consumer's entire set of Users.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>sAMAccountName</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="formattedName">
+                    <saas:fieldInfo code="formattedName" label="Formatted Name">
+                      <saas:note>The full name, including all middle names, titles, and suffixes as appropriate, formatted for display (e.g. Ms. Barbara Jane Jensen, III.).</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>cn</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="familyName">
+                    <saas:fieldInfo code="familyName" label="Family Name">
+                      <saas:note>The family name of the User, or "Last Name" in most Western languages (e.g. Jensen given the full name Ms. Barbara Jane Jensen, III.).</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>sn</saas:attributes>
+                      <saas:default>noSn</saas:default>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="givenName">
+                    <saas:fieldInfo code="givenName" label="Given Name">
+                      <saas:note>The given name of the User, or "First Name" in most Western languages (e.g. Barbara given the full name Ms. Barbara Jane Jensen, III.).</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>givenName</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="middleName">
+                    <saas:fieldInfo code="middleName" label="Middle Name">
+                      <saas:note>The middle name(s) of the User (e.g. Jane given the full name Ms. Barbara Jane Jensen, III.).</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="honorificPrefix">
+                    <saas:fieldInfo code="honorificPrefix" label="Honorific Prefix">
+                      <saas:note>The honorific prefix(es) of the User, or "Title" in most Western languages (e.g. Ms. given the full name Ms. Barbara Jane Jensen, III.).</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="honorificSuffix">
+                    <saas:fieldInfo code="honorificSuffix" label="Honorific Suffix">
+                      <saas:note>The honorific suffix(es) of the User, or "Suffix" in most Western languages (e.g. III. given the full name Ms. Barbara Jane Jensen, III.).</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>generationQualifier</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="displayName">
+                    <saas:fieldInfo code="displayName" label="Display Name">
+                      <saas:note>The name of the User, suitable for display to end-users. Each User returned MAY include a non-empty displayName value. The name SHOULD be the full name of the User being described if known (e.g. Babs Jensen or Ms. Barbara J Jensen, III), but MAY be a username or handle, if that is all that is available (e.g. bjensen). The value provided SHOULD be the primary textual label by which this User is normally displayed by the Service Provider when presenting it to end-users.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>displayName</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="nickName">
+                    <saas:fieldInfo code="nickName" label="Nickname">
+                      <saas:note>The casual way to address the user in real life, e.g. "Bob" or "Bobby" instead of "Robert". This attribute SHOULD NOT be used to represent a User's username (e.g. bjensen or mpepperidge).</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="profileUrl">
+                    <saas:fieldInfo code="profileUrl" label="Profile URL">
+                      <saas:note>A fully qualified URL to a page representing the User's online profile.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="title">
+                    <saas:fieldInfo code="title" label="Title">
+                      <saas:note>The user's title, such as "Vice President."</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>title</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="userType">
+                    <saas:fieldInfo code="userType" label="User Type">
+                      <saas:note>Used to identify the organization to user relationship. Typical values used might be "Contractor", "Employee", "Intern", "Temp", "External", and "Unknown" but any value may be used.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="preferredLanguage">
+                    <saas:fieldInfo code="preferredLanguage" label="Preferred Language">
+                      <saas:note>Indicates the User's preferred written or spoken language. Generally used for selecting a localized User interface. Valid values are concatenation of the ISO 639-1 two letter language code, an underscore, and the ISO 3166-1 2 letter country code; e.g., 'en_US' specifies the language English and country US.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="locale">
+                    <saas:fieldInfo code="locale" label="Locale">
+                      <saas:note>Used to indicate the User's default location for purposes of localizing items such as currency, date time format, numerical representations, etc. A locale value is a concatenation of the ISO 639-1 two letter language code, an underscore, and the ISO 3166-1 two letter country code; e.g., 'en_US' specifies the language English and country US.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="timezone">
+                    <saas:fieldInfo code="timezone" label="Timezone">
+                      <saas:note>The User's time zone in the "Olson" timezone database format; e.g.,'America/Los_Angeles'.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="password">
+                    <saas:fieldInfo code="password" label="Password">
+                      <saas:note>The User's clear text password. This attribute is intended to be used as a means to specify an initial password when creating a new User or to reset an existing User's password. No accepted standards exist to convey password policies, hence Consumers should expect Service Providers to reject password values.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:createOnly>true</saas:createOnly>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="email">
+                    <saas:fieldInfo code="email" label="Email">
+                      <saas:note>E-mail address for the User. The value SHOULD be canonicalized by the Service Provider, e.g. bjensen@example.com instead of bjensen@EXAMPLE.COM.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>mail</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="emailType">
+                    <saas:fieldInfo code="emailType" label="Email Type">
+                      <saas:option code="work" label="work"/>
+                      <saas:option code="home" label="home"/>
+                      <saas:option code="other" label="other"/>
+                      <saas:note>Canonical Type values of work, home, and other.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:default>work</saas:default>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="phoneNumber">
+                    <saas:fieldInfo code="phoneNumber" label="Phone Number">
+                      <saas:note>Phone number for the User. The value SHOULD be canonicalized by the Service Provider according to format in RFC3966 e.g. 'tel:+1-201-555-0123'.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>telephoneNumber</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="phoneNumberType">
+                    <saas:fieldInfo code="phoneNumberType" label="Phone Number Type">
+                      <saas:option code="work" label="work"/>
+                      <saas:option code="home" label="home"/>
+                      <saas:option code="mobile" label="mobile"/>
+                      <saas:option code="fax" label="fax"/>
+                      <saas:option code="pager" label="pager"/>
+                      <saas:option code="other" label="other"/>
+                      <saas:note>Canonical Type values of work, home, mobile, fax, pager and other.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:default>work</saas:default>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="ims">
+                    <saas:fieldInfo code="ims" label="Instant Messaging Address">
+                      <saas:note>Instant messaging address for the User.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="imsType">
+                    <saas:fieldInfo code="imsType" label="Instant Messaging Type">
+                      <saas:option code="aim" label="aim"/>
+                      <saas:option code="gtalk" label="gtalk"/>
+                      <saas:option code="icq" label="icq"/>
+                      <saas:option code="xmpp" label="xmpp"/>
+                      <saas:option code="msn" label="msn"/>
+                      <saas:option code="skype" label="skype"/>
+                      <saas:option code="qq" label="qq"/>
+                      <saas:option code="yahoo" label="yahoo"/>
+                      <saas:note>This attribute defines the following Canonical Values to represent currently popular IM services: aim, gtalk, icq, xmpp, msn, skype, qq, and yahoo.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="photo">
+                    <saas:fieldInfo code="photo" label="Photo">
+                      <saas:note>URL of a photo of the User. The value SHOULD be a canonicalized URL, and MUST point to an image file (e.g. a GIF, JPEG, or PNG image file) rather than to a web page containing an image.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="photoType">
+                    <saas:fieldInfo code="photoType" label="Photo Type">
+                      <saas:note>This attribute defines the following Canonical Values to represent popular photo sizes: photo, thumbnail.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="formattedAddress">
+                    <saas:fieldInfo code="formattedAddress" label="Formatted Address">
+                      <saas:note>The full mailing address, formatted for display or use with a mailing label. This attribute MAY contain newlines.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="streetAddress">
+                    <saas:fieldInfo code="streetAddress" label="Street Address">
+                      <saas:note>The full street address component, which may include house number, street name, P.O. box, and multi-line extended street address information. This attribute MAY contain newlines.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>streetAddress</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="locality">
+                    <saas:fieldInfo code="locality" label="Locality">
+                      <saas:note>The city or locality component.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>l</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="region">
+                    <saas:fieldInfo code="region" label="Region">
+                      <saas:note>The state or region component.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>st</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="postalCode">
+                    <saas:fieldInfo code="postalCode" label="Zip/Postal Code">
+                      <saas:note>The zipcode or postal code component.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>postalCode</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="country">
+                    <saas:fieldInfo code="country" label="Country">
+                      <saas:note>The country name component. When specified the value MUST be in ISO 3166-1 alpha 2 "short" code format; e.g., the United States and Sweden are "US" and "SE", respectively.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:attributes>c</saas:attributes>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="addressType">
+                    <saas:fieldInfo code="addressType" label="Address Type">
+                      <saas:option code="work" label="work"/>
+                      <saas:option code="home" label="home"/>
+                      <saas:option code="other" label="other"/>
+                      <saas:note>This address type can be work, home, or other.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig>
+                      <saas:default>home</saas:default>
+                    </saas:fieldConfig>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="entitlements">
+                    <saas:fieldInfo code="entitlements" label="Entitlements">
+                      <saas:multiValue>true</saas:multiValue>
+                      <saas:note>A list of entitlements for the User that represent a thing the User has. That is, an entitlement is an additional right to a thing, object or service.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="roles">
+                    <saas:fieldInfo code="roles" label="Roles">
+                      <saas:multiValue>true</saas:multiValue>
+                      <saas:note>A list of roles for the User that collectively represent who the User is; e.g., "Student", "Faculty". No vocabulary or syntax is specified though it is expected that a role value is a String or label representing a collection of entitlements.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="x509Certificates">
+                    <saas:fieldInfo code="x509Certificates" label="User Certificates">
+                      <saas:multiValue>true</saas:multiValue>
+                      <saas:note>A list of certificates issued to the User. Values are Binary and DER encoded x509.</saas:note>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                  <saas:identityMappingField fieldName="ldapAttributesMap">
+                    <saas:fieldInfo code="ldapAttributesMap" label="LDAP Attributes Map">
+                      <saas:note>A map of the raw LDAP attributes that can be used by the SCIM Service Provider for additional processing. This attribute is not part of the SCIM 1.1 specification, hence it is only useful if the service provider explicitly reads this attribute (i.e. PingOne).</saas:note>
+                      <saas:ldapMap>true</saas:ldapMap>
+                      <saas:attributeGroup>false</saas:attributeGroup>
+                    </saas:fieldInfo>
+                    <saas:fieldConfig/>
+                  </saas:identityMappingField>
+                </saas:channel>
+                <saas:Scim>
+                  <schema>urn:scim:schemas:extension:custom:1.0</schema>
+                  <attributes/>
+                </saas:Scim>
+              </saas:saasProvisionerEntity>
+            </saas:saasProvisioner>
+          </urn:Data>
+        </urn:ConnectionModule>
+      </urn:Dependencies>
+      <urn:ConnectionTemplateProperties/>
+      <urn:MetadataUrlId xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+      <urn:enableAutoMetadataUpdate>false</urn:enableAutoMetadataUpdate>
+      <urn:AdditionalAllowedEntitiesConfiguration>
+        <urn:AllowAdditionalEntities>false</urn:AllowAdditionalEntities>
+        <urn:AllowAllEntities>false</urn:AllowAllEntities>
+        <urn:AdditionalAllowedEntities/>
+      </urn:AdditionalAllowedEntitiesConfiguration>
+    </urn:EntityExtension>
+  </md:Extensions>
+  <md:RoleDescriptor protocolSupportEnumeration="pingfederate:protocol:noop" xsi:type="urn:PFNoopRoleDescriptorType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <md:Extensions>
+      <urn:RoleExtension/>
+    </md:Extensions>
+  </md:RoleDescriptor>
+  <md:RoleDescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol" xsi:type="urn:PFAvailableCertsRoleDescriptorType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+  <md:ContactPerson contactType="administrative"/>
+</md:EntityDescriptor>
