@@ -31,7 +31,7 @@ version: "2.4"
 
 services:
   pingfederate:
-    image: ${PING_IDENTITY_DEVOPS_REGISTRY}/pingfederate:10.0.2-latest
+    image: ${PING_IDENTITY_DEVOPS_REGISTRY}/pingfederate:edge
     #    command: wait-for pingdirectory:389 -t 900 -- entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_URL=https://github.com/slavapisarevskiy/scim-lab-docker.git
