@@ -2608,7 +2608,7 @@
                             },
                             {
                                 "name": "BASIC_AUTH_PASSWORD",
-                                "value": "${idp_spConnections_items_MHpPk2mBiamc.k6qGmKoYzqzFZ__outboundProvision_targetSettings_BASIC_AUTH_PASSWORD_value}"
+                                "value": "${idp_spConnections_items_MHpPk2mBiamc_k6qGmKoYzqzFZ__outboundProvision_targetSettings_BASIC_AUTH_PASSWORD_value}"
                             },
                             {
                                 "name": "OAuth 2 Bearer Token",
@@ -2616,7 +2616,7 @@
                             },
                             {
                                 "name": "OAUTH_ACCESS_TOKEN",
-                                "value": "${idp_spConnections_items_MHpPk2mBiamc.k6qGmKoYzqzFZ__outboundProvision_targetSettings_OAUTH_ACCESS_TOKEN_value}"
+                                "value": "${idp_spConnections_items_MHpPk2mBiamc_k6qGmKoYzqzFZ__outboundProvision_targetSettings_OAUTH_ACCESS_TOKEN_value}"
                             },
                             {
                                 "name": "OAuth 2 Client Credentials",
