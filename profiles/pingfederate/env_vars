@@ -13,7 +13,9 @@
 #   export NAME=${NAME:-OTHER_VAR}       # Sets ot value of OTHER_VAR variable
 # 
 
-export PF_LOG_LEVEL=${PF_LOG_LEVEL:=INFO}
+#export PF_LOG_LEVEL=${PF_LOG_LEVEL:=INFO}
+
+PF_LOG_LEVEL=DEBUG
 
 # from scim-lab-migration
 idp_adapters_items_sss_configuration_fields_PingID_Properties_value=1
