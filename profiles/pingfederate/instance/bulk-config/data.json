@@ -294,6 +294,45 @@
       ]
     },
     {
+      "resourceType": "/keyPairs/sslServer",
+      "operationType": "SAVE",
+      "items": [
+        {
+          "id": "6uqpj3hmx4usbvy1qkhi5563z",
+          "fileData": "MIIJ7wIBAzCCCagGCSqGSIb3DQEHAaCCCZkEggmVMIIJkTCCBWUGCSqGSIb3DQEHAaCCBVYEggVSMIIFTjCCBUoGCyqGSIb3DQEMCgECoIIE-zCCBPcwKQYKKoZIhvcNAQwBAzAbBBSpwCp5mlbvbTbzvAeExb8Q6VGdTgIDAMNQBIIEyAYdrFd9AyM4xp6z7yOCkeKdL0UqOJ2XcYgdu8zPGc7gAdy2u_GO27RHNPEwAj8Odid59icxHjyBLelc8cYZxOPV7kryNli0RhI0oDjd_zKAb96cgFjDlCJboi0KrjBwcoJwQdFW1vLDSNggY5TIPTQpY1DHnmof-K9A-JTzCp7mIF5jDz83HXAoZIjHaR90G9e3g3W1ge0Tq7VPR9iP28CLc2b39RT8gRccEqIqAN06Sn_nv3RJFWEbyIFYiaJnxDH-HVdSUwz5F_UwptlC6aw9VS10E4IFaTMNMGQIaj8y0sHCDL76DUnii45D60f9f9m6R5GgkmekNJ2Crkozbe8KQViYuPIs4TnhoNfx-D44ka-2lvLuew10JAdP3HvmrZIrCccW1Wlqe1RaaedrcmcUfbgIbQrlUv4ZMOWwbz44covCj_dELjiHyaKVRs4JrYlvnGfcsodqvS4CclH_HsouJSOsdF8wwtvXIM3fNbaWSP23os8UGMyg_smvFSU2Iy0OW5fM8wy91hQ4A2UqzEsfYYRag8ufvdNIEEuTXs0aYaC53pAIyxKOdjztqyj1O24cObVhStKYfCKDUJDxSKsNlMqBOtf-SIKT9Ayvg_hMXsqH5ZF2NudwRTtT50kiI4toq7hAURYS917-WqnuHh6A2IWF67clL6DuKtJ51PZuEZMCl_kQwsl20JpIkwSm4sl-nbdbhQC_2vM6RkG6McKnQByshM19jE_v5N2G0Kt8ckuAgIqUOLGLYSCg6a4RuBbq6It5z-p3DgqwHcnm0ecXb6EEqj6wSR2IamwD0dt0CloQFOcD0UmgWjMwF5vmDe_wbQRMw8BUWw_QPHtmW1vsbqSfS0w3iw5RaH9LnGZkIN6-acknmG1CuuNYzBVyc-7GYV8zZILitaRCZoP6xHX1MqB1aaI6gueRgixSUIHw1coYIkL7Q8qsZI7Xhg-J-I1jCMeQJK0RzwYq8x_3_ziFNjyDnf6RAAWOPHHa16DuYhkseFfEbPKLlu8xIohfTD56Mzv_xRXEXPx07xTQGuwSETS0PwXTdNsgHkIgIpIDh9nA0Ejz8QV88pNI6lfXoxPl6HHy1doCmeCc4e08dU6qECDiEhR0iJnE1NH64VdMzlVqbOcfkXUMiE8cawbNyBDTCT91yHKvfNOwE1NdyTau7UETGCxFg8319vMsW5lZhVmO8jQnnG-ChJ1Z7HdkgERbjoeLwUKnoLQjAkD5KcdVN4yCyNv1ENY2xHFoPZTc89E0t9uZAXMOx5aK7uBoyujbnOFZWP2isRXq5WxzhCc2X3SdguB8Fq_T6uCROO827QVbZpIWKkWEJ1E_snX8g9DYEf_ZQlr5Xui1DpRlo5qdobuY3Y4oA24UM8Htp3o0jPka397cAP8G7GncjOGTjgIns4I1Va4t9pQ9fLfBMq-E6dJbRJP7i9tfOcLtDP0CorZ9LIKpeFMTBLVCnfXLsfJ5wgR92ayi-RnF_yTKZbcaM0ggk8t3lwCRddnU8r2BNhDfAyx-f-HRTwt7A2PCG6wWhva2WEn8hAD2h29AN5LnGaIWwTMGZHBPRmCJ4tiSE2Z6LIdZveXjvpq92PP3navZIPMYZdkDXRFMXglvhs_S4TrKpEmtfzE8MBcGCSqGSIb3DQEJFDEKHggAcABpAG4AZzAhBgkqhkiG9w0BCRUxFAQSVGltZSAxNjA4MDEyMDYzOTE4MIIEJAYJKoZIhvcNAQcGoIIEFTCCBBECAQAwggQKBgkqhkiG9w0BBwEwKQYKKoZIhvcNAQwBBjAbBBSY-mmUvKljILfU_b_uJ2GNgyeO5gIDAMNQgIID0N9pzE0rkfTELUia0vj_-6eAWHkjnzWFOJjYpqckEj2jrIIAYUY3kDOVm-EK-MgaJ2DwupH5v9cTnWoft-VVZIAXYYGrmnWjij0ocEIqGkEGi_SSi4YYpbk_KO1mY7TgoE3Ser1sA_gBHpL6hUbqsmE-vD_N5yA9wZEO0dUYvKGS45iGt5WDIY7bfilipf3b4ZFf6gVl6p3jAprMuLR5WR1rx9lXZTrHMqAXjEzbKcX6iN812-flp8SnIcF8ihx2BEh1idtzrvNO6yfdY61D00K-fkSwLwThYWpbwIFD-4Ha_EX846UuQTSqLvUtavZIDUAuolAZ8PK9ydPMuH8Tzh6J4spYRkZit3AKoh1IdiKp_3X4o2ez0Iay8b8LnMpDRiRtdaS_VI8liq2HuhLLO_sSYszOJsO65fAYvY0PNkIMUg-Tf27AW6ZX9T-83iQhuBRe2TGsNoyoc2yPL39A5jL1rucUvHmm9lhdIShxrVTsv2GvURPte_trpyni7-cCcNSBwOjszXQutzUv3Ik5tvbwD1_Z3pQwovtV3fjUEjzw5PL7QyzzCy0CsCyuqg7te2R16mJJ3a43WcA5vkBz-8Gf19XwWn1VrDoXI2SN5PVrZP9DsYt3WvQx79-VugKPNh_c405DDros1shDbwpBHN46ob8R35fterQjbydLwX0ncbk94IcW4QvUAtpDD-29HrA6VokPWjjbk6vTcRSjEnACVFzubYjx566phFbyd20PsvjGvO27AtOdbkPR8eq8HhhNWSJkWPDZ1YPSA7BL7cKTltVW_yhq5KC85FMk38BJL5NOrpygz957Anjzj9lRCaHftMT-mGR5LpuTt34ZKlDH1gNJf28pw3Pk8G5i3SAhyx7SWTXoL-0RWmHZ_sCli7eyRBRohkprufhr7qMnR6S6cZHVhYkiRupZvPzqFIdZ-BUlHQ4TM2a99xwalXrxLiVJLn7cS8GHUdrBQ11cajS29z_g7hPJr0PEfKrkSArG1cNNOYclr6stgDJ2Q_6KN6QkM8NT8D4kT3EOxLToK685l1mxYysQLmWXwhD6a8BN7I9V-VNbUV4jE1EhaNFK84NpdzxG5yPXrP4rprpve8IbNySbx1Sxi-kdNdE_oETjSjtLiPorWI2DIFUomtmfAcCQbaDPxLHE0khcszh00yUXJMlHQb9OklEsxD9jNV5HeWcCLCXCgbX-mmqYWHkbmiqQeQmgbdwmJ8HgdNwNNBz16hCGnJv4KwOfRKsgmmTRvykHF7HoX2DPwhr_Wi17c85QNtX_VVhKDMafTobgyC4wPjAhMAkGBSsOAwIaBQAEFJXcih4nLBu7FCaSWGrXuqrFeAMLBBTprenHrvmCo-ya0_ePD-Dllzm23gIDAYag",
+          "encryptedPassword": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiQkY1M2tHSEZ2NiIsInZlcnNpb24iOiIxMC4wLjIuMiJ9..jdqSHuxtHucgKnQQ7JHRzQ.r6dn3XsELboL8f_ljDnJkZuZcIttTRZMcfvC7Gw2veA.DETVVxOnHOho0iuiIK9cxQ"
+        }
+      ]
+    },
+    {
+      "resourceType": "/keyPairs/sslServer/settings",
+      "operationType": "SAVE",
+      "items": [
+        {
+          "runtimeServerCertRef": {
+            "id": "6uqpj3hmx4usbvy1qkhi5563z",
+            "location": "https://pa.company.com:9999/pf-admin-api/v1/keyPairs/sslServer/6uqpj3hmx4usbvy1qkhi5563z"
+          },
+          "adminConsoleCertRef": {
+            "id": "6uqpj3hmx4usbvy1qkhi5563z",
+            "location": "https://pa.company.com:9999/pf-admin-api/v1/keyPairs/sslServer/6uqpj3hmx4usbvy1qkhi5563z"
+          },
+          "activeRuntimeServerCerts": [
+            {
+              "id": "6uqpj3hmx4usbvy1qkhi5563z",
+              "location": "https://pa.company.com:9999/pf-admin-api/v1/keyPairs/sslServer/6uqpj3hmx4usbvy1qkhi5563z"
+            }
+          ],
+          "activeAdminConsoleCerts": [
+            {
+              "id": "6uqpj3hmx4usbvy1qkhi5563z",
+              "location": "https://pa.company.com:9999/pf-admin-api/v1/keyPairs/sslServer/6uqpj3hmx4usbvy1qkhi5563z"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "resourceType": "/keyPairs/oauthOpenIdConnect",
       "operationType": "SAVE",
       "items": [
