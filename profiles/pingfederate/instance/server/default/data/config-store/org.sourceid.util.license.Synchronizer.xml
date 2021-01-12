@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <con:config xmlns:con="http://www.sourceid.org/2004/05/config">
-    <con:item name="1539243:WARN">2020-01-15</con:item>
+    <con:item name="397080279d4066aef874aac45b2e64d3:N/A:EXPIRED">397080279d4066aef874aac45b2e64d3:N/A:EXPIRED</con:item>
+    <con:item name="397080279d4066aef874aac45b2e64d3:N/A:FINAL_WARN">397080279d4066aef874aac45b2e64d3:N/A:FINAL_WARN</con:item>
+    <con:item name="397080279d4066aef874aac45b2e64d3:N/A:INITIAL_WARN">397080279d4066aef874aac45b2e64d3:N/A:INITIAL_WARN</con:item>
 </con:config>

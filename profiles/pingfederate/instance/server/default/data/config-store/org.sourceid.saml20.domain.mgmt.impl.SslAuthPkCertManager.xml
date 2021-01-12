@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <con:config xmlns:con="http://www.sourceid.org/2004/05/config">
-    <con:map name="docker"/>
-    <con:map name="https://httpbin.org"/>
+    <con:map name="localhost:default:entityId"/>
+    <con:map name="localhost:default:entityId:111"/>
+    <con:map name="localhost:default:entityId111"/>
+    <con:map name="sss"/>
+    <con:map name="SCIMv2"/>
+    <con:map name="SCIMv1_spconn"/>
+    <con:map name="SCIMv2_spconn"/>
 </con:config>

@@ -2,6 +2,7 @@
 <c:config xmlns:c="http://www.sourceid.org/2004/05/config">
     <c:item name="ApiBaseUrl">https://admin-api.pingone.com/v3</c:item>
     <c:item name="WebPortalUrl">https://admin.pingone.com/web-portal</c:item>
+    <c:item name="AddApplicationUrl">https://admin.pingone.com/web-portal/cas/connections#/</c:item>
     <c:item name="ConnTimeoutMillis">10000</c:item>
     <c:item name="VerificationKeySetRefreshIntervalMins">60</c:item>
     <c:item name="AllowedClockSkewSecs">300</c:item>

@@ -1,1 +1,794 @@
-<saasProvisioner version="1.0" enableSaasProvisionerGUI="false" internalDataSourceId="" syncInterval="60" encryptDBSaasIdentities="true" xmlns="http://pingidentity.com/2008/06/saas-provisioner"/>
+<saasProvisioner version="1.0" enableSaasProvisionerGUI="true" internalDataSourceId="ProvisionerDS" syncInterval="60" encryptDBSaasIdentities="true" xmlns="http://pingidentity.com/2008/06/saas-provisioner">
+  <saasProvisionerEntity>
+    <entityId>SCIMv1_spconn</entityId>
+    <target id="SCIM11">
+      <parameter name="usersUrl" value="http://pingdirectory:8080/scim/v1/Users"/>
+      <parameter name="groupsUrl" value="http://pingdirectory:8080/scim/v1/Groups"/>
+      <parameter name="authentication" value="basic"/>
+      <parameter name="basicAuthUser" value="cn=administrator"/>
+      <parameter name="basicAuthPass" value="OBF:JWE:eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiQkY1M2tHSEZ2NiIsInZlcnNpb24iOiIxMC4wLjIuMiJ9..AYhl2ZZXWH9XNxQuEoBfAw.nr48YhhY-Ozb8dSEAwX8Sw.e0OVLcrsP2_lJfFQj4bhZQ"/>
+      <parameter name="clientId" value=""/>
+      <parameter name="clientSecret" value="OBF:JWE:eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiQkY1M2tHSEZ2NiIsInZlcnNpb24iOiIxMC4wLjIuMiJ9..XMakoXd7okfDfImF4wUWmg.b6wUu2M0mtWy8sHEzplChg.wl4fAhHFWvp1Dt4r1UMPUw"/>
+      <parameter name="tokenEndpoint" value=""/>
+      <parameter name="isPatchSupported" value="true"/>
+      <parameter name="useDnAsGroupName" value="false"/>
+      <parameter name="deprovisionMethod" value="deleteUser"/>
+      <parameter name="rateLimitErrorCode" value="429"/>
+    </target>
+    <channel id="4" name="SCIMv1_channel11" active="true">
+      <maxThreads>1</maxThreads>
+      <timeout>60</timeout>
+      <source dataSourceId="LDAP-8C05E186F74E29DF98A734F689AA5B6FB14896A1">
+        <ldapGuidFormatter guidAttributeName="entryUUID" guidIsBinary="false"/>
+        <usersBaseDN>dc=provsource,dc=net</usersBaseDN>
+        <groupDN>cn=UsersToProvision,ou=GroupsGroups,dc=provsource,dc=net</groupDN>
+        <memberOfGroupAttributeName>isMemberOf</memberOfGroupAttributeName>
+        <groupDNForGroups>cn=GroupsToProvision,ou=GroupsGroups,dc=provsource,dc=net</groupDNForGroups>
+        <groupMemberAttributeName>uniqueMember</groupMemberAttributeName>
+        <changedUsersAlgorithm>Timestamp</changedUsersAlgorithm>
+        <timestampAttributeName>modifyTimestamp</timestampAttributeName>
+        <userObjectClass>person</userObjectClass>
+        <groupObjectClass>groupOfUniqueNames</groupObjectClass>
+        <directoryIdentityAttributesMapper statusReader="Flag">
+          <attributeName>nsaccountlock</attributeName>
+          <default>true</default>
+          <comparisonValue>true</comparisonValue>
+          <comparisonValueStatus>false</comparisonValueStatus>
+        </directoryIdentityAttributesMapper>
+        <userNestedSearch>false</userNestedSearch>
+        <groupNestedSearch>false</groupNestedSearch>
+      </source>
+      <saasUsernameFieldCode>userName</saasUsernameFieldCode>
+      <identityMappingField fieldName="userName">
+        <fieldInfo code="userName" label="Username">
+          <required>true</required>
+          <unique>true</unique>
+          <minLength>1</minLength>
+          <note>Unique identifier for the User, typically used by the user to directly authenticate to the service provider. Often displayed to the user as their unique identifier within the system. Each User MUST include a non-empty userName value. This identifier MUST be unique across the Service Consumer's entire set of Users.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig>
+          <attributes>uid</attributes>
+        </fieldConfig>
+      </identityMappingField>
+      <identityMappingField fieldName="formattedName">
+        <fieldInfo code="formattedName" label="Formatted Name">
+          <note>The full name, including all middle names, titles, and suffixes as appropriate, formatted for display (e.g. Ms. Barbara Jane Jensen, III.).</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig>
+          <attributes>cn</attributes>
+        </fieldConfig>
+      </identityMappingField>
+      <identityMappingField fieldName="familyName">
+        <fieldInfo code="familyName" label="Family Name">
+          <note>The family name of the User, or "Last Name" in most Western languages (e.g. Jensen given the full name Ms. Barbara Jane Jensen, III.).</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig>
+          <attributes>sn</attributes>
+        </fieldConfig>
+      </identityMappingField>
+      <identityMappingField fieldName="givenName">
+        <fieldInfo code="givenName" label="Given Name">
+          <note>The given name of the User, or "First Name" in most Western languages (e.g. Barbara given the full name Ms. Barbara Jane Jensen, III.).</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig>
+          <attributes>givenName</attributes>
+        </fieldConfig>
+      </identityMappingField>
+      <identityMappingField fieldName="middleName">
+        <fieldInfo code="middleName" label="Middle Name">
+          <note>The middle name(s) of the User (e.g. Jane given the full name Ms. Barbara Jane Jensen, III.).</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="honorificPrefix">
+        <fieldInfo code="honorificPrefix" label="Honorific Prefix">
+          <note>The honorific prefix(es) of the User, or "Title" in most Western languages (e.g. Ms. given the full name Ms. Barbara Jane Jensen, III.).</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="honorificSuffix">
+        <fieldInfo code="honorificSuffix" label="Honorific Suffix">
+          <note>The honorific suffix(es) of the User, or "Suffix" in most Western languages (e.g. III. given the full name Ms. Barbara Jane Jensen, III.).</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig>
+          <attributes>generationQualifier</attributes>
+        </fieldConfig>
+      </identityMappingField>
+      <identityMappingField fieldName="displayName">
+        <fieldInfo code="displayName" label="Display Name">
+          <note>The name of the User, suitable for display to end-users. Each User returned MAY include a non-empty displayName value. The name SHOULD be the full name of the User being described if known (e.g. Babs Jensen or Ms. Barbara J Jensen, III), but MAY be a username or handle, if that is all that is available (e.g. bjensen). The value provided SHOULD be the primary textual label by which this User is normally displayed by the Service Provider when presenting it to end-users.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig>
+          <attributes>displayName</attributes>
+        </fieldConfig>
+      </identityMappingField>
+      <identityMappingField fieldName="nickName">
+        <fieldInfo code="nickName" label="Nickname">
+          <note>The casual way to address the user in real life, e.g. "Bob" or "Bobby" instead of "Robert". This attribute SHOULD NOT be used to represent a User's username (e.g. bjensen or mpepperidge).</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="profileUrl">
+        <fieldInfo code="profileUrl" label="Profile URL">
+          <note>A fully qualified URL to a page representing the User's online profile.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="title">
+        <fieldInfo code="title" label="Title">
+          <note>The user's title, such as "Vice President."</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig>
+          <attributes>title</attributes>
+        </fieldConfig>
+      </identityMappingField>
+      <identityMappingField fieldName="userType">
+        <fieldInfo code="userType" label="User Type">
+          <note>Used to identify the organization to user relationship. Typical values used might be "Contractor", "Employee", "Intern", "Temp", "External", and "Unknown" but any value may be used.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="preferredLanguage">
+        <fieldInfo code="preferredLanguage" label="Preferred Language">
+          <note>Indicates the User's preferred written or spoken language. Generally used for selecting a localized User interface. Valid values are concatenation of the ISO 639-1 two letter language code, an underscore, and the ISO 3166-1 2 letter country code; e.g., 'en_US' specifies the language English and country US.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="locale">
+        <fieldInfo code="locale" label="Locale">
+          <note>Used to indicate the User's default location for purposes of localizing items such as currency, date time format, numerical representations, etc. A locale value is a concatenation of the ISO 639-1 two letter language code, an underscore, and the ISO 3166-1 two letter country code; e.g., 'en_US' specifies the language English and country US.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="timezone">
+        <fieldInfo code="timezone" label="Timezone">
+          <note>The User's time zone in the "Olson" timezone database format; e.g.,'America/Los_Angeles'.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="password">
+        <fieldInfo code="password" label="Password">
+          <note>The User's clear text password. This attribute is intended to be used as a means to specify an initial password when creating a new User or to reset an existing User's password. No accepted standards exist to convey password policies, hence Consumers should expect Service Providers to reject password values.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig>
+          <createOnly>true</createOnly>
+          <mask>true</mask>
+        </fieldConfig>
+      </identityMappingField>
+      <identityMappingField fieldName="email">
+        <fieldInfo code="email" label="Email">
+          <note>E-mail address for the User. The value SHOULD be canonicalized by the Service Provider, e.g. bjensen@example.com instead of bjensen@EXAMPLE.COM.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig>
+          <attributes>mail</attributes>
+        </fieldConfig>
+      </identityMappingField>
+      <identityMappingField fieldName="emailType">
+        <fieldInfo code="emailType" label="Email Type">
+          <option code="work" label="work"/>
+          <option code="home" label="home"/>
+          <option code="other" label="other"/>
+          <note>Canonical Type values of work, home, and other.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig>
+          <default>work</default>
+        </fieldConfig>
+      </identityMappingField>
+      <identityMappingField fieldName="phoneNumber">
+        <fieldInfo code="phoneNumber" label="Phone Number">
+          <note>Phone number for the User. The value SHOULD be canonicalized by the Service Provider according to format in RFC3966 e.g. 'tel:+1-201-555-0123'.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig>
+          <attributes>telephoneNumber</attributes>
+        </fieldConfig>
+      </identityMappingField>
+      <identityMappingField fieldName="phoneNumberType">
+        <fieldInfo code="phoneNumberType" label="Phone Number Type">
+          <option code="work" label="work"/>
+          <option code="home" label="home"/>
+          <option code="mobile" label="mobile"/>
+          <option code="fax" label="fax"/>
+          <option code="pager" label="pager"/>
+          <option code="other" label="other"/>
+          <note>Canonical Type values of work, home, mobile, fax, pager and other.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig>
+          <default>work</default>
+        </fieldConfig>
+      </identityMappingField>
+      <identityMappingField fieldName="ims">
+        <fieldInfo code="ims" label="Instant Messaging Address">
+          <note>Instant messaging address for the User.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="imsType">
+        <fieldInfo code="imsType" label="Instant Messaging Type">
+          <option code="aim" label="aim"/>
+          <option code="gtalk" label="gtalk"/>
+          <option code="icq" label="icq"/>
+          <option code="xmpp" label="xmpp"/>
+          <option code="msn" label="msn"/>
+          <option code="skype" label="skype"/>
+          <option code="qq" label="qq"/>
+          <option code="yahoo" label="yahoo"/>
+          <note>This attribute defines the following Canonical Values to represent currently popular IM services: aim, gtalk, icq, xmpp, msn, skype, qq, and yahoo.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="photo">
+        <fieldInfo code="photo" label="Photo">
+          <note>URL of a photo of the User. The value SHOULD be a canonicalized URL, and MUST point to an image file (e.g. a GIF, JPEG, or PNG image file) rather than to a web page containing an image.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="photoType">
+        <fieldInfo code="photoType" label="Photo Type">
+          <note>This attribute defines the following Canonical Values to represent popular photo sizes: photo, thumbnail.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="formattedAddress">
+        <fieldInfo code="formattedAddress" label="Formatted Address">
+          <note>The full mailing address, formatted for display or use with a mailing label. This attribute MAY contain newlines.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="streetAddress">
+        <fieldInfo code="streetAddress" label="Street Address">
+          <note>The full street address component, which may include house number, street name, P.O. box, and multi-line extended street address information. This attribute MAY contain newlines.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig>
+          <attributes>streetAddress</attributes>
+        </fieldConfig>
+      </identityMappingField>
+      <identityMappingField fieldName="locality">
+        <fieldInfo code="locality" label="Locality">
+          <note>The city or locality component.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig>
+          <attributes>l</attributes>
+        </fieldConfig>
+      </identityMappingField>
+      <identityMappingField fieldName="region">
+        <fieldInfo code="region" label="Region">
+          <note>The state or region component.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig>
+          <attributes>st</attributes>
+        </fieldConfig>
+      </identityMappingField>
+      <identityMappingField fieldName="postalCode">
+        <fieldInfo code="postalCode" label="Zip/Postal Code">
+          <note>The zipcode or postal code component.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig>
+          <attributes>postalCode</attributes>
+        </fieldConfig>
+      </identityMappingField>
+      <identityMappingField fieldName="country">
+        <fieldInfo code="country" label="Country">
+          <note>The country name component. When specified the value MUST be in ISO 3166-1 alpha 2 "short" code format; e.g., the United States and Sweden are "US" and "SE", respectively.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig>
+          <attributes>c</attributes>
+        </fieldConfig>
+      </identityMappingField>
+      <identityMappingField fieldName="addressType">
+        <fieldInfo code="addressType" label="Address Type">
+          <option code="work" label="work"/>
+          <option code="home" label="home"/>
+          <option code="other" label="other"/>
+          <note>This address type can be work, home, or other.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig>
+          <default>home</default>
+        </fieldConfig>
+      </identityMappingField>
+      <identityMappingField fieldName="entitlements">
+        <fieldInfo code="entitlements" label="Entitlements">
+          <multiValue>true</multiValue>
+          <note>A list of entitlements for the User that represent a thing the User has. That is, an entitlement is an additional right to a thing, object or service.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="roles">
+        <fieldInfo code="roles" label="Roles">
+          <multiValue>true</multiValue>
+          <note>A list of roles for the User that collectively represent who the User is; e.g., "Student", "Faculty". No vocabulary or syntax is specified though it is expected that a role value is a String or label representing a collection of entitlements.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="x509Certificates">
+        <fieldInfo code="x509Certificates" label="User Certificates">
+          <multiValue>true</multiValue>
+          <note>A list of certificates issued to the User. Values are Binary and DER encoded x509.</note>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="ldapAttributesMap">
+        <fieldInfo code="ldapAttributesMap" label="LDAP Attributes Map">
+          <note>A map of the raw LDAP attributes that can be used by the SCIM Service Provider for additional processing. This attribute is not part of the SCIM 1.1 specification, hence it is only useful if the service provider explicitly reads this attribute (i.e. PingOne).</note>
+          <ldapMap>true</ldapMap>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+    </channel>
+    <Scim>
+      <schema xmlns="">urn:scim:schemas:extension:custom:1.0</schema>
+      <attributes xmlns=""/>
+    </Scim>
+  </saasProvisionerEntity>
+  <saasProvisionerEntity>
+    <entityId>SCIMv2_spconn</entityId>
+    <target id="scim">
+      <parameter name="SCIM_URL" value="http://pingdirectory:8080/scim/v2"/>
+      <parameter name="SCIM_VERSION" value="2.0"/>
+      <parameter name="AUTHENTICATION_METHOD" value="OAuth 2 Bearer Token"/>
+      <parameter name="Basic Authentication" value=""/>
+      <parameter name="BASIC_AUTH_USER" value=""/>
+      <parameter name="BASIC_AUTH_PASSWORD" value=""/>
+      <parameter name="OAuth 2 Bearer Token" value=""/>
+      <parameter name="OAUTH_ACCESS_TOKEN" value="OBF:JWE:eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiQkY1M2tHSEZ2NiIsInZlcnNpb24iOiIxMC4wLjIuMiJ9..hG7n0G-FkGznjmtx2zTxqw.mLzHc5rbKVMArosghLkixeSsOnOeazJWgDamvLoj_du5kdLPkjtXH2FWyd5GHYVTEU5mXGiDio3Qf4hdzjt1ldRAE4ArcNNGSYjyGOmMFPHQSQG8aai_bi4wUT7GtsN_Oy81LKyd_w89GvfS8nwbIg.3ZK4LgtKqMQH5Z_SmZfzjQ"/>
+      <parameter name="OAuth 2 Client Credentials" value=""/>
+      <parameter name="OAUTH_TOKEN_REQUEST" value=""/>
+      <parameter name="OAUTH_CLIENT_ID" value=""/>
+      <parameter name="OAUTH_CLIENT_SECRET" value="OBF:JWE:eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiQkY1M2tHSEZ2NiIsInZlcnNpb24iOiIxMC4wLjIuMiJ9..tuuEtg2nh-jwtbHx6l2hNA.pduMW2KmW9-3N-LrcPjTRw.gIF7JUNkQmP6FC0gVyxCqA"/>
+      <parameter name="SCIM Overrides" value=""/>
+      <parameter name="UNIQUE_USER_IDENTIFIER" value="userName"/>
+      <parameter name="USER_FILTER" value=""/>
+      <parameter name="AUTHORIZATION_TYPE" value=""/>
+      <parameter name="USERS_RESOURCE" value=""/>
+      <parameter name="GROUPS_RESOURCE" value=""/>
+      <parameter name="RESULTS_PER_PAGE" value="1000"/>
+      <parameter name="Provisioning Options" value=""/>
+      <parameter name="createNewUsers" value="true"/>
+      <parameter name="updateNewUsers" value="true"/>
+      <parameter name="disableNewUsers" value="true"/>
+      <parameter name="PROVISION_DISABLED_USERS" value="false"/>
+      <parameter name="REMOVE_ACTION" value="Delete"/>
+      <parameter name="GROUP_NAME_SOURCE" value="Common Name"/>
+    </target>
+    <channel id="2" name="ch444" active="true">
+      <maxThreads>1</maxThreads>
+      <timeout>60</timeout>
+      <source dataSourceId="LDAP-8C05E186F74E29DF98A734F689AA5B6FB14896A1">
+        <ldapGuidFormatter guidAttributeName="entryUUID" guidIsBinary="false"/>
+        <usersBaseDN>ou=ProvisioningContainer,ou=staff,dc=provsource,dc=net</usersBaseDN>
+        <filter>(uid=*)</filter>
+        <memberOfGroupAttributeName>isMemberOf</memberOfGroupAttributeName>
+        <groupMemberAttributeName>uniqueMember</groupMemberAttributeName>
+        <changedUsersAlgorithm>Timestamp</changedUsersAlgorithm>
+        <timestampAttributeName>modifyTimestamp</timestampAttributeName>
+        <userObjectClass>person</userObjectClass>
+        <groupObjectClass>groupOfUniqueNames</groupObjectClass>
+        <directoryIdentityAttributesMapper statusReader="Flag">
+          <attributeName>nsaccountlock</attributeName>
+          <default>true</default>
+          <comparisonValue>true</comparisonValue>
+          <comparisonValueStatus>false</comparisonValueStatus>
+        </directoryIdentityAttributesMapper>
+        <userNestedSearch>false</userNestedSearch>
+        <groupNestedSearch>false</groupNestedSearch>
+      </source>
+      <saasUsernameFieldCode>userName</saasUsernameFieldCode>
+      <identityMappingField fieldName="userName">
+        <fieldInfo code="userName" label="userName">
+          <required>true</required>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig>
+          <attributes>uid</attributes>
+          <default>NA</default>
+          <extractCnFromDn>true</extractCnFromDn>
+        </fieldConfig>
+      </identityMappingField>
+      <identityMappingField fieldName="workEmail">
+        <fieldInfo code="workEmail" label="workEmail">
+          <unique>true</unique>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="aimIm">
+        <fieldInfo code="aimIm" label="aimIm">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="certificates">
+        <fieldInfo code="certificates" label="certificates">
+          <multiValue>true</multiValue>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="costCenter">
+        <fieldInfo code="costCenter" label="costCenter">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="department">
+        <fieldInfo code="department" label="department">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="displayName">
+        <fieldInfo code="displayName" label="displayName">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="division">
+        <fieldInfo code="division" label="division">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="employeeNumber">
+        <fieldInfo code="employeeNumber" label="employeeNumber">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="entitlements">
+        <fieldInfo code="entitlements" label="entitlements">
+          <multiValue>true</multiValue>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="externalId">
+        <fieldInfo code="externalId" label="externalId">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="familyName">
+        <fieldInfo code="familyName" label="familyName">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig>
+          <attributes>sn</attributes>
+        </fieldConfig>
+      </identityMappingField>
+      <identityMappingField fieldName="faxPhone">
+        <fieldInfo code="faxPhone" label="faxPhone">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="formattedName">
+        <fieldInfo code="formattedName" label="formattedName">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig>
+          <createOnly>true</createOnly>
+          <attributes>cn</attributes>
+          <default>NA</default>
+        </fieldConfig>
+      </identityMappingField>
+      <identityMappingField fieldName="givenName">
+        <fieldInfo code="givenName" label="givenName">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="gtalkIm">
+        <fieldInfo code="gtalkIm" label="gtalkIm">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="homeCity">
+        <fieldInfo code="homeCity" label="homeCity">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="homeCountry">
+        <fieldInfo code="homeCountry" label="homeCountry">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="homeFormattedAddress">
+        <fieldInfo code="homeFormattedAddress" label="homeFormattedAddress">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="homePhone">
+        <fieldInfo code="homePhone" label="homePhone">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="homePostalCode">
+        <fieldInfo code="homePostalCode" label="homePostalCode">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="homeState">
+        <fieldInfo code="homeState" label="homeState">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="homeStreetAddress">
+        <fieldInfo code="homeStreetAddress" label="homeStreetAddress">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="honorificPrefix">
+        <fieldInfo code="honorificPrefix" label="honorificPrefix">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="honorificSuffix">
+        <fieldInfo code="honorificSuffix" label="honorificSuffix">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="icqIm">
+        <fieldInfo code="icqIm" label="icqIm">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="locale">
+        <fieldInfo code="locale" label="locale">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="manager">
+        <fieldInfo code="manager" label="manager">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="middleName">
+        <fieldInfo code="middleName" label="middleName">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="mobilePhone">
+        <fieldInfo code="mobilePhone" label="mobilePhone">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="msnIm">
+        <fieldInfo code="msnIm" label="msnIm">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="nickName">
+        <fieldInfo code="nickName" label="nickName">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="organization">
+        <fieldInfo code="organization" label="organization">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="otherCity">
+        <fieldInfo code="otherCity" label="otherCity">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="otherCountry">
+        <fieldInfo code="otherCountry" label="otherCountry">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="otherFormattedAddress">
+        <fieldInfo code="otherFormattedAddress" label="otherFormattedAddress">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="otherPhone">
+        <fieldInfo code="otherPhone" label="otherPhone">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="otherPostalCode">
+        <fieldInfo code="otherPostalCode" label="otherPostalCode">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="otherState">
+        <fieldInfo code="otherState" label="otherState">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="otherStreetAddress">
+        <fieldInfo code="otherStreetAddress" label="otherStreetAddress">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="pagerPhone">
+        <fieldInfo code="pagerPhone" label="pagerPhone">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="password">
+        <fieldInfo code="password" label="password">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="preferredLanguage">
+        <fieldInfo code="preferredLanguage" label="preferredLanguage">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="profilePhotoUrl">
+        <fieldInfo code="profilePhotoUrl" label="profilePhotoUrl">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="profileThumbnailUrl">
+        <fieldInfo code="profileThumbnailUrl" label="profileThumbnailUrl">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="profileUrl">
+        <fieldInfo code="profileUrl" label="profileUrl">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="qqIm">
+        <fieldInfo code="qqIm" label="qqIm">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="roles">
+        <fieldInfo code="roles" label="roles">
+          <multiValue>true</multiValue>
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="skypeIm">
+        <fieldInfo code="skypeIm" label="skypeIm">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="timeZone">
+        <fieldInfo code="timeZone" label="timeZone">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="title">
+        <fieldInfo code="title" label="title">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="userType">
+        <fieldInfo code="userType" label="userType">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="workCity">
+        <fieldInfo code="workCity" label="workCity">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="workCountry">
+        <fieldInfo code="workCountry" label="workCountry">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="workFormattedAddress">
+        <fieldInfo code="workFormattedAddress" label="workFormattedAddress">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="workPhone">
+        <fieldInfo code="workPhone" label="workPhone">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="workPostalCode">
+        <fieldInfo code="workPostalCode" label="workPostalCode">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="workState">
+        <fieldInfo code="workState" label="workState">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="workStreetAddress">
+        <fieldInfo code="workStreetAddress" label="workStreetAddress">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="xmppIm">
+        <fieldInfo code="xmppIm" label="xmppIm">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+      <identityMappingField fieldName="yahooIm">
+        <fieldInfo code="yahooIm" label="yahooIm">
+          <attributeGroup>false</attributeGroup>
+        </fieldInfo>
+        <fieldConfig/>
+      </identityMappingField>
+    </channel>
+    <Scim/>
+  </saasProvisionerEntity>
+</saasProvisioner>

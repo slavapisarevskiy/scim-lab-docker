@@ -1,9 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:config xmlns:con="http://www.sourceid.org/2004/05/config">
-    <con:list name="whitelist"/>
-    <con:item name="enable-validation">true</con:item>
-    <con:item name="enable-validation-target-resource-slo">true</con:item>
-    <con:item name="enable-validation-inerror-resource">true</con:item>
-    <con:item name="enable-validation-target-resource-idp-discovery">true</con:item>
-    <con:item name="enable-validation-wreply-slo">true</con:item>
-</con:config>
+<c:config xmlns:c="http://www.sourceid.org/2004/05/config">
+</c:config>

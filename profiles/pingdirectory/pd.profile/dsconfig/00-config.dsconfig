@@ -4,6 +4,15 @@
 #   Ignore differences on shared host
 #   Ignore differences by instance
 
+dsconfig create-backend \
+    --backend-name provSource  \
+    --type local-db  \
+    --set enabled:true  \
+    --set base-dn:dc=provsource,dc=net  \
+    --set 'db-checkpointer-wakeup-interval:30 s'  \
+    --set db-cache-percent:22  \
+    --set deadlock-retry-limit:10 
+
 dsconfig create-scim-schema \
     --schema-name urn:ietf:params:scim:schemas:core:2.0:Group  \
     --set 'description:SCIM v2 Group Resource Type'  \
