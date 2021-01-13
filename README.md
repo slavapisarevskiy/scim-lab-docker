@@ -134,3 +134,6 @@ Up to:
 #      - ${HOME}/projects/scim-lab-docker/pingfederate-opt-out:/opt/out
 #      - ${HOME}/projects/scim-lab-docker/profiles/pingfederate:/opt/in
 ```
+
+### Heapsize and performance
+PD and surprisingly PF can be slow in docker environment. So be patient especially with UI. You can see that in docker-compose.yaml I deliberatly increased MAX_HEAP_SIZE parameter up to 2048 Mb. You can adjust it for your self or completely remove it - in this case heap will be an image default.  
