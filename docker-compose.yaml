@@ -48,8 +48,8 @@ services:
     networks:
       - pingnet
     volumes:
-      # - pingfederate-out:/opt/out
-      - ${HOME}/projects/scim-lab-docker/pingfederate-opt-out:/opt/out
+      - pingfederate-out:/opt/out
+      # - ${HOME}/projects/scim-lab-docker/pingfederate-opt-out:/opt/out
       #- ${HOME}/projects/scim-lab-docker/profiles/pingfederate:/opt/in
 
   pingdirectory:
@@ -75,8 +75,8 @@ services:
     networks:
       - pingnet
     volumes:
-      # - pingdirectory-out:/opt/out
-      - ${HOME}/projects/scim-lab-docker/pingdirectory-opt-out:/opt/out
+      - pingdirectory-out:/opt/out
+      # - ${HOME}/projects/scim-lab-docker/pingdirectory-opt-out:/opt/out
       #- ${HOME}/projects/scim-lab-docker/profiles/pingdirectory:/opt/in
 
   pingdataconsole:
