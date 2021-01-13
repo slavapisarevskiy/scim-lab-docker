@@ -8,7 +8,7 @@ PingFederate is setup to provision users from LDAP to both SCIMv1 and SCIMv2 (2 
 SCIMv1 uses PF built-in SCIM plugin
 SCIMv2 uses PF dedicated SCIM connector plugin
 
-###LDAP Source:
+### LDAP Source:
 PD's dc=provsource,dc=net backend (BE)
 
 Both SCIM1 & 2 uses the same source BE but different source settings:
@@ -22,7 +22,7 @@ Users from: ou=ProvisioningContainer,ou=staff,dc=provsource,dc=net (using LDAP f
 Groups from: Not implemented due to PD 8.2 limitations.
 
 
-###Target:
+### Target:
 PD's dc=example,dc=com backend
 
 SCIM1 users will be in: ou=provisioned,ou=People,dc=example,dc=com
@@ -30,13 +30,13 @@ SCIM1 groups will be in: ou=Groups,dc=example,dc=com
 
 SCIM2 users will be in: ou=provisioned2,ou=People,dc=example,dc=com
 
-##Credentials:
+## Credentials:
 
 * PF console: administrator / 2FederateM0re
 * PD LDAP: cn=administrator / 2FederateM0re
 * PD Console: cn=administrator / 2FederateM0re (!) hostname in UI prompt: pingdirectory 
 
-##Exposed ports
+## Exposed ports
 
 You are able to access server using "localhost".
 
@@ -44,18 +44,18 @@ E.g.: PF console: https://localhost:9999/pingfederate/app
 
 PingFederate:
 
-Admin Console: 9999
-Runtime Port: 9031
+* Admin Console: 9999
+* Runtime Port: 9031
 
 PingDirectory:
 
-LDAP: 1389
-LDAPS: 1636
-HTTP: 18080
-HTTPS: 1443
+* LDAP: 1389
+* LDAPS: 1636
+* HTTP: 18080
+* HTTPS: 1443
 
 PingDataConsole (PD console):
-https://locahost:8443
+* https://locahost:8443/console
 
 
 ##Start
@@ -93,15 +93,26 @@ Create directory (if not already):
 
 ```mkdir ~/projects/scim-lab-docker/```
 
-Uncomment the following in docker-compose.yaml file:
+In docker-compose.yaml file:
 
 Under services/pingfederate:
+
+Comment:
+```
+#- pingfederate-out:/opt/out
+```
+Uncomment:
 ```
 - ${HOME}/projects/scim-lab-docker/pingfederate-opt-out:/opt/out
 ```
 
 Under services/pingdirectory:
 
+Comment:
+```
+#- pingdirectory-out:/opt/out
+```
+Uncomment:
 ```
 - ${HOME}/projects/scim-lab-docker/pingdirectory-opt-out:/opt/out
 ```

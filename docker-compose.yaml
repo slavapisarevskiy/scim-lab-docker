@@ -1,15 +1,12 @@
 version: "2.4"
-# The server profiles used in this example are intended for use with edge versions of the product image only.
-
 #-------------------------------------------------------------------------------------
-#- Ping Identity Simple Stack integrated demo
 #-
-#-     login  console            app                console           rest    ldaps
-#-     9031   9999               6443                 8443            1443    1636
-#-      |      |                  |                    |               |       |
-#-   +---------------+    +---------------+    +---------------+    +---------------+
-#-   | PingFederate  |    | PingDelegator |    |PingDataConsole|    | PingDirectory |
-#-   +---------------+    +---------------+    +---------------+    +---------------+
+#-     login  console               console           rest    ldaps
+#-     9031   9999                   8443            1443    1636
+#-      |      |                      |               |       |
+#-   +---------------+       +---------------+    +---------------+
+#-   | PingFederate  |       |PingDataConsole|    | PingDirectory |
+#-   +---------------+       +---------------+    +---------------+
 #-
 #-  PingFederate Console                         PingDataConsole (PingDirectory)
 #-  --------------------                         -------------------------------
@@ -18,15 +15,6 @@ version: "2.4"
 #-    Password: 2FederateM0re                      Username: administrator
 #-                                                 Password: 2FederateM0re
 #-
-#-  PingDelegator App
-#-  -----------------
-#-  https://localhost:6443
-#-    Username: administrator
-#-    Password: 2FederateM0re
-#-
-#- NOTE: If you receive an error after pingdelegator login: 'You could not be authenticated'
-#-       some browsers (i.e. Firefox) may require you to accept cert on each port.
-#-       You should be able to goto https://localhost:1443 and accept the cert to continue.
 #-------------------------------------------------------------------------------------
 
 services:
@@ -48,8 +36,8 @@ services:
     networks:
       - pingnet
     volumes:
-      - pingfederate-out:/opt/out
-      # - ${HOME}/projects/scim-lab-docker/pingfederate-opt-out:/opt/out
+      #- pingfederate-out:/opt/out
+      - ${HOME}/projects/scim-lab-docker/pingfederate-opt-out:/opt/out
       #- ${HOME}/projects/scim-lab-docker/profiles/pingfederate:/opt/in
 
   pingdirectory:
@@ -75,8 +63,8 @@ services:
     networks:
       - pingnet
     volumes:
-      - pingdirectory-out:/opt/out
-      # - ${HOME}/projects/scim-lab-docker/pingdirectory-opt-out:/opt/out
+      #- pingdirectory-out:/opt/out
+      - ${HOME}/projects/scim-lab-docker/pingdirectory-opt-out:/opt/out
       #- ${HOME}/projects/scim-lab-docker/profiles/pingdirectory:/opt/in
 
   pingdataconsole:
@@ -86,18 +74,6 @@ services:
     networks:
       - pingnet
 
-#  pingdelegator:
-#    image: ${PING_IDENTITY_DEVOPS_REGISTRY}/pingdelegator:${PING_IDENTITY_DEVOPS_TAG}
-#    environment:
-#      - PD_ENGINE_PUBLIC_PORT=1443
-#      - SERVER_PROFILE_URL=https://github.com/slavapisarevskiy/scim-lab-docker.git
-#      - SERVER_PROFILE_PATH=profiles/pingdelegatorS
-#    env_file:
-#      - ${HOME}/.pingidentity/devops
-#    ports:
-#      - "6443:6443"
-#    networks:
-#      - pingnet
 
 networks:
     pingnet:
