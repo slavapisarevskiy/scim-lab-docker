@@ -19,7 +19,7 @@ Groups from: cn=GroupsToProvision,ou=GroupsGroups,dc=provsource,dc=net
 
 SCIMv2 takes:
 Users from: ou=ProvisioningContainer,ou=staff,dc=provsource,dc=net (using LDAP filter prov. mode)
-Groups from: Not implemented due to PD 8.2 limitations.
+Groups from: Not implemented due to PD 8.2 limitation - SCIMv2 does not support Groups provisioning.
 
 
 ### Target:
@@ -34,7 +34,7 @@ SCIM2 users will be in: ou=provisioned2,ou=People,dc=example,dc=com
 
 * PF console: administrator / 2FederateM0re
 * PD LDAP: cn=administrator / 2FederateM0re
-* PD Console: cn=administrator / 2FederateM0re (!) hostname in UI prompt: pingdirectory 
+* PD Console: administrator / 2FederateM0re (!) "Server" in UI prompt: pingdirectory 
 
 ## Exposed ports
 
@@ -74,7 +74,7 @@ cd into repository directory and run:
 
 ```
 cd ~/projects/scim-lab-docker
-docker-compose up
+docker-compose up -d
 ```
 
 Temporarily stop (e.g.: at the end of the day):
