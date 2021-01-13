@@ -1,6 +1,6 @@
-#PingFederate Outbound Provisioning and PingDirectory SCIMv1 and SCIMv2 Lab
+# PingFederate Outbound Provisioning and PingDirectory SCIMv1 and SCIMv2 Lab
 
-###Servers:
+### Servers:
 * PF 10
 * PD 8.2 with 2 separate Backends for provisioning source (dc=provsource,dc=net) and target (dc=example,dc=com) 
 
@@ -30,7 +30,11 @@ SCIM1 groups will be in: ou=Groups,dc=example,dc=com
 
 SCIM2 users will be in: ou=provisioned2,ou=People,dc=example,dc=com
 
+##Credentials:
 
+* PF console: administrator / 2FederateM0re
+* PD LDAP: cn=administrator / 2FederateM0re
+* PD Console: cn=administrator / 2FederateM0re (!) hostname in UI prompt: pingdirectory 
 
 ##Exposed ports
 
@@ -57,17 +61,65 @@ https://locahost:8443
 ##Start
 
 To start lab you need Docker and docker-compose.
-clone repository:
-git clone <url>
 
-cd into repository directory then:
+Clone repository. Recommend ~/projects:
 
+```
+mkdir
+cd ~/projects
+git clone https://github.com/slavapisarevskiy/scim-lab-docker.git
+```
+
+cd into repository directory and run:
+
+```
+cd ~/projects/scim-lab-docker
 docker-compose up
+```
 
-By default containers uses docker volumes which are not exposed to your machine.
+Temporarily stop (e.g.: at the end of the day):
+```docker-compose stop```
+Later to start:
+```docker-compose start```
 
-In order to see logs on your Mac and preserver you need to tweak docker file and create directry.
+Delete container and its volumes (complete reset) !don't forget -v otherwise docker volumes will be kept and next time you spin it it will not be fresh start:
+```docker-compose down -v```
 
-Uncomment the following in docker-compose:
+###In order to see logs on your Mac and preserver you need to tweak docker file and create directry.
 
+By default containers use Docker's volumes which are not exposed to your Mac/machine.
 
+Create directory (if not already):
+
+```mkdir ~/projects/scim-lab-docker/```
+
+Uncomment the following in docker-compose.yaml file:
+
+Under services/pingfederate:
+```
+- ${HOME}/projects/scim-lab-docker/pingfederate-opt-out:/opt/out
+```
+
+Under services/pingdirectory:
+
+```
+- ${HOME}/projects/scim-lab-docker/pingdirectory-opt-out:/opt/out
+```
+
+Obviously you can modify path to any you like but make sure that directory (path - 1) exists. E.g.: "${HOME}/projects/scim-lab-docker" must exist, "pingdirectory-opt-out" will be created. 
+
+###Using only PD (no PF) as SCIM target:
+You can just run docker-compose as above and access PD HTTP/HTTPS ports. Though if you like to save Mac resources you can remove PF. In order to do it just comment everything under services/pingfederate in docker-compose and reset.
+
+From:
+```
+#    pingfederate:
+#        image: ${PING_IDENTITY_DEVOPS_REGISTRY}/pingfederate:10.0.2-edge
+```
+Up to:
+```
+#    volumes:
+#      - pingfederate-out:/opt/out
+#      - ${HOME}/projects/scim-lab-docker/pingfederate-opt-out:/opt/out
+#      - ${HOME}/projects/scim-lab-docker/profiles/pingfederate:/opt/in
+```
