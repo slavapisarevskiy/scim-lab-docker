@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urn:PluginConfiguration isInheritExtendedContractAttributes="false" name="UserPass" xmlns:urn="urn:sourceid.org:saml2:adapter:conf">
+    <urn:Fields/>
+    <urn:AdvancedFields/>
+    <urn:Tables>
+        <urn:Table name="Users">
+            <urn:Row>
+                <urn:Field name="Username">joe</urn:Field>
+                <urn:Field name="Password">eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiQkY1M2tHSEZ2NiIsInZlcnNpb24iOiI3LjIuMC4yLVNOQVBTSE9UIn0..-yZywsA0LZg3eet547TifQ.vY8GaNdjY24uayIcyKph5Q.OoldSd7QnL-oqA_oYWR0rQ</urn:Field>
+                <urn:Field name="Confirm Password">eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiQkY1M2tHSEZ2NiIsInZlcnNpb24iOiI3LjIuMC4yLVNOQVBTSE9UIn0..Ao14nk9BF6QA4H2rmnrrUg.UZznJUVg5OMxEShRkITpuA.xwFNEceUzGW-9JAwvSP4-w</urn:Field>
+            </urn:Row>
+            <urn:Row>
+                <urn:Field name="Username">sarah</urn:Field>
+                <urn:Field name="Password">eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiQkY1M2tHSEZ2NiIsInZlcnNpb24iOiI3LjIuMC4yLVNOQVBTSE9UIn0..RqpGxnw7YaX9m2FUwvkCag.uY8O6yLjvOYGW4LDZikm2Q.9IxfTosjVTSoa4AJBbKJTw</urn:Field>
+                <urn:Field name="Confirm Password">eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiQkY1M2tHSEZ2NiIsInZlcnNpb24iOiI3LjIuMC4yLVNOQVBTSE9UIn0..ut90PuYU5xnbXg8U6i_QRw.DR9CXCM_JYx1bEnzhioHkw.xh8yc-3m2j0t2nbJpyrfbw</urn:Field>
+            </urn:Row>
+            <urn:Row>
+                <urn:Field name="Username">scott</urn:Field>
+                <urn:Field name="Password">eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiQkY1M2tHSEZ2NiIsInZlcnNpb24iOiI3LjIuMC4yLVNOQVBTSE9UIn0..tq8CgL6l2T6Sqoiycu1J6w.lqh8RiKMPwlHUCbCUURDxQ.Yh6Mwci0R4aOUZETRfG0Wg</urn:Field>
+                <urn:Field name="Confirm Password">eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiQkY1M2tHSEZ2NiIsInZlcnNpb24iOiI3LjIuMC4yLVNOQVBTSE9UIn0..SoCy50up7Y9AL_bOlzrYog.dp0pMYVkO-jQFV0ALW-l_g.civaacYwjacLLcNYmI4y7g</urn:Field>
+            </urn:Row>
+        </urn:Table>
+    </urn:Tables>
+</urn:PluginConfiguration>

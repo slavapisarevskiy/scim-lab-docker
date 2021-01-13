@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ldap:ldap-sources xmlns:ldap="http://pingidentity.com/2004/09/ldap-ds">
+    <ldap:ldap-source id="LDAP-9ABE4366B80705279C3BD4041B19F116EF61407E" maskAttributeValues="false" ldapType="ActiveDirectory" ldapTypeDesc="Active Directory" testOnBorrow="false" testOnReturn="false" createIfNecessary="true" minIdle="10" maxActive="100" maxWait="-1" timeBetweenEvictionRunsMillis="60000" readTimeoutMillis="5000" connTimeoutMillis="3000" verifyHost="false" dnsTtlMillis="60000" ldapDnsSrvPrefix="_ldap._tcp" ldapsDnsSrvPrefix="_ldaps._tcp">
+        <ldap:host>172.16.64.142</ldap:host>
+        <ldap:principal>CN=Administrator,CN=Users,DC=mctest,DC=local</ldap:principal>
+        <ldap:use-ssl>true</ldap:use-ssl>
+        <ldap:use-dns-srv-records>false</ldap:use-dns-srv-records>
+        <ldap:credentials>eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiQkY1M2tHSEZ2NiIsInZlcnNpb24iOiI5LjMuMC45In0..yEt4ulFmzWHUmSpphJUWpQ.f-RHoOebMIrEZocm7V8MKA.tktKerYgEBXfdf1F25g0Dg</ldap:credentials>
+        <ldap:authenticationMeth>simple</ldap:authenticationMeth>
+        <ldap:description>MORDYNAD</ldap:description>
+        <ldap:name>MORDYNAD</ldap:name>
+        <ldap:binaryAttributes/>
+    </ldap:ldap-source>
+    <ldap:ldap-source id="LDAP-8C05E186F74E29DF98A734F689AA5B6FB14896A1" maskAttributeValues="false" ldapType="PingDirectory" ldapTypeDesc="PingDirectory" testOnBorrow="false" testOnReturn="false" createIfNecessary="true" minIdle="10" maxActive="100" maxWait="-1" timeBetweenEvictionRunsMillis="60000" readTimeoutMillis="3000" connTimeoutMillis="3000" verifyHost="true" dnsTtlMillis="60000" ldapDnsSrvPrefix="_ldap._tcp" ldapsDnsSrvPrefix="_ldaps._tcp">
+        <ldap:host>int-ubu18.sp.ping-eng.com:8389</ldap:host>
+        <ldap:principal>cn=dmanager</ldap:principal>
+        <ldap:use-ssl>false</ldap:use-ssl>
+        <ldap:use-dns-srv-records>false</ldap:use-dns-srv-records>
+        <ldap:credentials>eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiQkY1M2tHSEZ2NiIsInZlcnNpb24iOiI5LjMuMC45In0.._wFAt1S3YS5uhKDpeIPllw.Ju097vO8mYhKJMfdc6_-gQ.nMr-zjqb_YeCZvV7CG_qxA</ldap:credentials>
+        <ldap:authenticationMeth>simple</ldap:authenticationMeth>
+        <ldap:description>PD-ubu18</ldap:description>
+        <ldap:name>PD-ubu18</ldap:name>
+        <ldap:binaryAttributes/>
+    </ldap:ldap-source>
+</ldap:ldap-sources>

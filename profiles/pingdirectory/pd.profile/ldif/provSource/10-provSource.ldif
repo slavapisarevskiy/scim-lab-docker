@@ -1,0 +1,632 @@
+# LDIF export started at 20210112040639.944Z
+# Included branch:  dc=provsource,dc=net
+
+dn: dc=provsource,dc=net
+objectClass: top
+objectClass: domain
+dc: provsource
+aci: (targetattr!="userPassword")(version 3.0; acl "Allow anonymous read access for anyone"; allow (read,search,compare) userdn="ldap:///anyone";)
+aci: (targetattr!="userPassword")(version 3.0; acl "Allow self-read access to all user attributes except the password"; allow (read,search,compare) userdn="ldap:///self";)
+aci: (targetattr="*")(version 3.0; acl "Allow users to update their own entries"; allow (write) userdn="ldap:///self";)
+aci: (targetattr="*")(version 3.0; acl "Grant full access for the admin user"; allow (all) userdn="ldap:///uid=admin,dc=provsource,dc=net";)
+entryUUID: 90c7e88c-1ed0-322f-879c-98ca61798ed2
+
+dn: ou=staff,dc=provsource,dc=net
+objectClass: top
+objectClass: organizationalUnit
+ou: staff
+entryUUID: f5e64d1a-a467-3f5f-a107-418f7e8ac9da
+
+dn: ou=GroupsGroups,dc=provsource,dc=net
+objectClass: top
+objectClass: organizationalUnit
+ou: GroupsGroups
+aci: (targetattr="*")(version 3.0; acl "ACI for global access"; allow (all) oauthscope="admin";)
+createTimestamp: 20201230063829.522Z
+creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
+modifyTimestamp: 20201230063829.522Z
+modifiersName: cn=Directory Manager,cn=Root DNs,cn=config
+entryUUID: 50c8c97c-3fa7-4fa6-9cf4-56e6a4c7eede
+
+dn: ou=Groups,dc=provsource,dc=net
+objectClass: top
+objectClass: organizationalunit
+ou: Groups
+createTimestamp: 20210112011652.175Z
+creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
+modifyTimestamp: 20210112011652.175Z
+modifiersName: cn=Directory Manager,cn=Root DNs,cn=config
+entryUUID: af55756b-bbd8-40c4-beeb-2a4f93062c83
+
+dn: ou=ProvisioningContainer,ou=staff,dc=provsource,dc=net
+objectClass: top
+objectClass: organizationalUnit
+ou: ProvisioningContainer
+createTimestamp: 20210112034448.221Z
+creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
+entryUUID: e09f1f1c-ae59-4fac-b256-01732100bac9
+modifiersName: cn=Directory Manager,cn=Root DNs,cn=config
+modifyTimestamp: 20210112034521.009Z
+
+dn: uid=member.19,ou=ProvisioningContainer,ou=staff,dc=provsource,dc=net
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+mail: member.19@provsource.net
+initials: BVC
+homePhone: +1 482 642 5647
+pager: +1 857 108 2058
+givenName: Bobinette
+employeeNumber: 19
+telephoneNumber: +1 096 050 6251
+mobile: +1 160 407 4100
+sn: Centis
+cn: Bobinette Centis
+userPassword: {SSHA256}LuW4GbOUqeImMu9NELeoPzVfPxjaGrFUaFze1+rFyFJS7uoP/d5VZw==
+description: This is the description for Bobinette Centis.
+street: 45883 Eleventh Street
+st: MD
+postalAddress: Bobinette Centis$45883 Eleventh Street$Bowling Green, MD  31351
+l: Bowling Green
+postalCode: 31351
+uid: member.19
+entryUUID: 48438f31-3f23-3a3e-a29b-deac6533b0bf
+modifiersName: cn=Directory Manager,cn=Root DNs,cn=config
+modifyTimestamp: 20210112034632.500Z
+
+dn: cn=GroupsToProvision,ou=GroupsGroups,dc=provsource,dc=net
+objectClass: top
+objectClass: groupOfUniqueNames
+uniqueMember: cn=Test group,ou=Groups,dc=provsource,dc=net
+uniqueMember: cn=VPN_users,ou=Groups,dc=provsource,dc=net
+cn: GroupsToProvision
+ou: GroupsGroups
+createTimestamp: 20210112011500.600Z
+creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
+modifyTimestamp: 20210112011500.600Z
+modifiersName: cn=Directory Manager,cn=Root DNs,cn=config
+entryUUID: 0426d360-0d22-4fa0-a82d-e2b86317b49d
+
+dn: cn=Test group,ou=Groups,dc=provsource,dc=net
+objectClass: top
+objectClass: groupOfUniqueNames
+uniqueMember: uid=member.0,ou=staff,dc=provsource,dc=net
+uniqueMember: uid=member.1,ou=staff,dc=provsource,dc=net
+cn: Test group
+createTimestamp: 20210112011652.404Z
+creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
+modifyTimestamp: 20210112011652.404Z
+modifiersName: cn=Directory Manager,cn=Root DNs,cn=config
+entryUUID: ceef7cca-e8f3-4607-99cb-83625f87f203
+
+dn: cn=VPN_users,ou=Groups,dc=provsource,dc=net
+objectClass: top
+objectClass: groupOfUniqueNames
+uniqueMember: uid=member.10,ou=staff,dc=provsource,dc=net
+uniqueMember: uid=member.11,ou=staff,dc=provsource,dc=net
+uniqueMember: uid=member.12,ou=staff,dc=provsource,dc=net
+cn: VPN_users
+createTimestamp: 20210112011652.636Z
+creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
+modifyTimestamp: 20210112011652.636Z
+modifiersName: cn=Directory Manager,cn=Root DNs,cn=config
+entryUUID: e3d1331a-f2d6-451a-9db2-e3ae3cf8cbdc
+
+dn: cn=testGroup222,ou=Groups,dc=provsource,dc=net
+objectClass: top
+objectClass: groupOfUniqueNames
+uniqueMember: uid=member.5,ou=staff,dc=provsource,dc=net
+uniqueMember: uid=member.6,ou=staff,dc=provsource,dc=net
+cn: testGroup222
+createTimestamp: 20210112011652.865Z
+creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
+entryUUID: a357b58c-6fac-4a87-90de-0747c70f74ef
+modifiersName: cn=Directory Manager,cn=Root DNs,cn=config
+modifyTimestamp: 20210112011838.569Z
+
+dn: uid=admin,dc=provsource,dc=net
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+sn: User
+cn: Admin User
+givenName: Admin
+userPassword: {SSHA256}s6GFnlHn7VRwSmcMMYhy08ZUugMh0fidy96/zebid3UqPGkOlkkxFQ==
+uid: admin
+entryUUID: 509747e5-b909-3f18-b337-92827173b501
+
+dn: uid=member.15,ou=staff,dc=provsource,dc=net
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+mail: member.15@provsource.net
+initials: JSP
+homePhone: +1 653 880 1506
+pager: +1 602 052 9070
+givenName: Jandy
+employeeNumber: 15
+telephoneNumber: +1 701 660 0030
+mobile: +1 154 080 4386
+sn: Pavitt
+cn: Jandy Pavitt
+userPassword: {SSHA256}8ocGuD2k8aWwvjUoR43xxwbu6+s2hsm1VflmNAmqvXeWI6/8sM8K0g==
+description: This is the description for Jandy Pavitt.
+street: 33004 Fourth Street
+st: GA
+postalAddress: Jandy Pavitt$33004 Fourth Street$Utica, GA  33786
+uid: member.15
+l: Utica
+postalCode: 33786
+entryUUID: 0d0ba509-d32c-3cac-bb5d-548442374eca
+
+dn: uid=member.0,ou=staff,dc=provsource,dc=net
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+mail: member.0@provsource.net
+initials: MZS
+homePhone: +1 272 511 1187
+pager: +1 608 005 8813
+givenName: Mariette
+employeeNumber: 0
+telephoneNumber: +1 535 916 5815
+mobile: +1 443 143 3988
+sn: Sankey
+cn: Mariette Sankey
+userPassword: {SSHA256}ppr/ZWUuhWZGiSzszPWYwh+M6QaY6z2lra0h/oTZTyTY4Me6QT99sA==
+description: This is the description for Mariette Sankey.
+street: 86106 Oak Street
+st: IA
+postalAddress: Mariette Sankey$86106 Oak Street$Lubbock, IA  15836
+uid: member.0
+l: Lubbock
+postalCode: 15836
+entryUUID: 5dbebe81-990c-3feb-ac58-36fa7d46ffc1
+
+dn: uid=member.16,ou=staff,dc=provsource,dc=net
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+mail: member.16@provsource.net
+initials: VZC
+homePhone: +1 648 006 4904
+pager: +1 000 021 2388
+givenName: Vm
+employeeNumber: 16
+telephoneNumber: +1 932 905 1486
+mobile: +1 056 650 3091
+sn: Caviness
+cn: Vm Caviness
+userPassword: {SSHA256}e4dKuTcwSvYFd3pRSIfM8eNT6uEOCKDgwJwGyxoFuRMPFs4tAHs08A==
+description: This is the description for Vm Caviness.
+street: 88571 College Street
+st: CT
+postalAddress: Vm Caviness$88571 College Street$Springfield, CT  35923
+uid: member.16
+l: Springfield
+postalCode: 35923
+entryUUID: ea9cce46-d481-3c95-8ba3-21cb886e2239
+
+dn: uid=member.17,ou=staff,dc=provsource,dc=net
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+mail: member.17@provsource.net
+initials: EVB
+homePhone: +1 969 119 2933
+pager: +1 902 725 6215
+givenName: Emelita
+employeeNumber: 17
+telephoneNumber: +1 151 273 8778
+mobile: +1 512 137 9187
+sn: Bebee
+cn: Emelita Bebee
+userPassword: {SSHA256}DkHMBNa32mdhAsMMnH4EvokRikayWaIMlWBgk2p5eWKqBidM+B1AMw==
+description: This is the description for Emelita Bebee.
+street: 96187 Pine Street
+st: ME
+postalAddress: Emelita Bebee$96187 Pine Street$Great Falls, ME  73921
+uid: member.17
+l: Great Falls
+postalCode: 73921
+entryUUID: a19f5abe-23f3-3f6b-a0e2-7b1639df6344
+
+dn: uid=member.1,ou=staff,dc=provsource,dc=net
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+mail: member.1@provsource.net
+initials: RNM
+homePhone: +1 374 758 0753
+pager: +1 909 684 1648
+givenName: Riyaz
+employeeNumber: 1
+telephoneNumber: +1 403 600 3090
+mobile: +1 013 830 1266
+sn: McPherson
+cn: Riyaz McPherson
+userPassword: {SSHA256}3c+Fip2E8FNo9t4rQizjgtkX8VQLeYouRoFnbaQitQ0nd0MZm+6I3A==
+description: This is the description for Riyaz McPherson.
+street: 55088 Taylor Street
+st: TX
+postalAddress: Riyaz McPherson$55088 Taylor Street$Sioux Falls, TX  88006
+uid: member.1
+l: Sioux Falls
+postalCode: 88006
+entryUUID: 9cab2d04-69c0-3a40-8d88-43d683c9d5f9
+
+dn: uid=member.2,ou=staff,dc=provsource,dc=net
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+mail: member.2@provsource.net
+initials: TKM
+homePhone: +1 551 586 0906
+pager: +1 627 004 6207
+givenName: Tadayuki
+employeeNumber: 2
+telephoneNumber: +1 006 871 8471
+mobile: +1 871 104 7374
+sn: McGorman
+cn: Tadayuki McGorman
+userPassword: {SSHA256}fH4A8ZDrw+6IWND8oRHZuzYplOgLBDIpnP/tKKUUhZk3eMlmK+3vmQ==
+description: This is the description for Tadayuki McGorman.
+street: 70282 Sycamore Street
+st: TN
+postalAddress: Tadayuki McGorman$70282 Sycamore Street$Cadillac, TN  14511
+uid: member.2
+l: Cadillac
+postalCode: 14511
+entryUUID: 3e6349a4-754b-32ed-944b-665162517fc0
+
+dn: uid=member.3,ou=staff,dc=provsource,dc=net
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+mail: member.3@provsource.net
+initials: EKE
+homePhone: +1 750 211 2526
+pager: +1 094 796 8369
+givenName: Em
+employeeNumber: 3
+telephoneNumber: +1 971 039 5026
+mobile: +1 854 573 2073
+sn: Eder
+cn: Em Eder
+userPassword: {SSHA256}aQgJrGUmQQPQfxSO7TRhE2+zWz7gFciWM/qZ5PIS/kLOkyTCgi/8zQ==
+description: This is the description for Em Eder.
+street: 80600 Main Street
+st: VT
+postalAddress: Em Eder$80600 Main Street$Birmingham, VT  09673
+uid: member.3
+l: Birmingham
+postalCode: 09673
+entryUUID: d2d5d10c-da10-3f14-bf6e-22fc429357a3
+
+dn: uid=member.4,ou=staff,dc=provsource,dc=net
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+mail: member.4@provsource.net
+initials: FWS
+homePhone: +1 504 294 9864
+pager: +1 048 403 0400
+givenName: Frantisek
+employeeNumber: 4
+telephoneNumber: +1 896 052 0171
+mobile: +1 331 155 0887
+sn: Saunders
+cn: Frantisek Saunders
+userPassword: {SSHA256}fAg9YkUqcHmeF6vUKqAF0YHBwHe7XrBkEAbgq3taCvJKyo/Zdz78Bg==
+description: This is the description for Frantisek Saunders.
+street: 63395 Sunset Street
+st: GA
+postalAddress: Frantisek Saunders$63395 Sunset Street$Great Falls, GA  03808
+uid: member.4
+l: Great Falls
+postalCode: 03808
+entryUUID: 900ddc97-fa44-3651-b117-90d835992540
+
+dn: uid=member.5,ou=staff,dc=provsource,dc=net
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+mail: member.5@provsource.net
+initials: TLN
+homePhone: +1 355 032 1510
+pager: +1 862 768 4378
+givenName: Tootsie
+employeeNumber: 5
+telephoneNumber: +1 331 687 1627
+mobile: +1 056 766 8678
+sn: Northam
+cn: Tootsie Northam
+userPassword: {SSHA256}ypP2pQmJJLoWGE9husg0Nr4Mx6v5dy06XPJyt6uZf8jTD/Zwj9Ra3w==
+description: This is the description for Tootsie Northam.
+street: 01520 Thirteenth Street
+st: WV
+postalAddress: Tootsie Northam$01520 Thirteenth Street$New Haven, WV  97407
+uid: member.5
+l: New Haven
+postalCode: 97407
+entryUUID: d394158e-9f8e-3e79-94a8-b835a6d2d7c7
+
+dn: uid=member.6,ou=staff,dc=provsource,dc=net
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+mail: member.6@provsource.net
+initials: KWW
+homePhone: +1 593 974 3235
+pager: +1 558 400 2710
+givenName: Kara-lynn
+employeeNumber: 6
+telephoneNumber: +1 196 952 4645
+mobile: +1 238 807 9090
+sn: Wolfman
+cn: Kara-lynn Wolfman
+userPassword: {SSHA256}GBqGLykLkfHB1nInqNC358I8qj0fHFXnQr5hvORpghzTnY7wUiXS1g==
+description: This is the description for Kara-lynn Wolfman.
+street: 86825 Ridge Street
+st: ID
+postalAddress: Kara-lynn Wolfman$86825 Ridge Street$Klamath Falls, ID  90049
+uid: member.6
+l: Klamath Falls
+postalCode: 90049
+entryUUID: 1c809db1-4d07-30f3-ae34-4555c8751895
+
+dn: uid=member.7,ou=staff,dc=provsource,dc=net
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+mail: member.7@provsource.net
+initials: VIH
+homePhone: +1 309 570 8178
+pager: +1 965 178 0060
+givenName: Vonni
+employeeNumber: 7
+telephoneNumber: +1 505 261 0619
+mobile: +1 690 560 9914
+sn: Holmes
+cn: Vonni Holmes
+userPassword: {SSHA256}e+cnOOlpxR7ipxOsIwBZrwZ87u4BsXEl12LXiIZYujXUcwkZq0u3VA==
+description: This is the description for Vonni Holmes.
+street: 28900 Fifth Street
+st: WY
+postalAddress: Vonni Holmes$28900 Fifth Street$College Station, WY  66619
+uid: member.7
+l: College Station
+postalCode: 66619
+entryUUID: b1264498-e958-39d9-98a3-aa8eddde1c99
+
+dn: uid=member.8,ou=staff,dc=provsource,dc=net
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+mail: member.8@provsource.net
+initials: LMB
+homePhone: +1 513 063 8007
+pager: +1 335 685 7566
+givenName: Leann
+employeeNumber: 8
+telephoneNumber: +1 201 387 7615
+mobile: +1 042 034 5693
+sn: Burgin
+cn: Leann Burgin
+userPassword: {SSHA256}eOTxZbZ4wGml0nRiNtt4Yy8TrRo65jhvDQpqLtftcxYVMwuxHdhlDw==
+description: This is the description for Leann Burgin.
+street: 71900 South Street
+st: NJ
+postalAddress: Leann Burgin$71900 South Street$Billings, NJ  04100
+uid: member.8
+l: Billings
+postalCode: 04100
+entryUUID: d23a1b2b-827e-39ec-a61a-9dab110c3b1e
+
+dn: uid=member.9,ou=staff,dc=provsource,dc=net
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+mail: member.9@provsource.net
+initials: LUF
+homePhone: +1 706 472 7451
+pager: +1 723 631 4119
+givenName: Leticia
+employeeNumber: 9
+telephoneNumber: +1 854 178 5050
+mobile: +1 159 131 8704
+sn: Fait
+cn: Leticia Fait
+userPassword: {SSHA256}Gf7VuHdp7W3eG7rsVlpS9Q5fK1gXus1T8LEWq57GzxBM58WZh1uLzg==
+description: This is the description for Leticia Fait.
+street: 90762 Elm Street
+st: LA
+postalAddress: Leticia Fait$90762 Elm Street$Monroe, LA  90028
+uid: member.9
+l: Monroe
+postalCode: 90028
+entryUUID: 11c9d227-4a92-3328-8738-5fe42418e397
+
+dn: uid=member.10,ou=staff,dc=provsource,dc=net
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+mail: member.10@provsource.net
+initials: GXS
+homePhone: +1 994 361 0706
+pager: +1 987 064 9706
+givenName: Gelais
+employeeNumber: 10
+telephoneNumber: +1 077 065 0019
+mobile: +1 075 809 2555
+sn: Shastry
+cn: Gelais Shastry
+userPassword: {SSHA256}TCjCqS0/jVRF5PnKGgFEDE+ue5ht65ePRw2/zG7AWOCQ8eTPlTYuYQ==
+description: This is the description for Gelais Shastry.
+street: 55099 Cherry Street
+st: MO
+postalAddress: Gelais Shastry$55099 Cherry Street$Flint, MO  60047
+uid: member.10
+l: Flint
+postalCode: 60047
+entryUUID: 99d6cccf-b584-375c-a6f4-901863bf0d65
+
+dn: uid=member.11,ou=staff,dc=provsource,dc=net
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+mail: member.11@provsource.net
+initials: LAM
+homePhone: +1 990 015 7285
+pager: +1 314 652 5048
+givenName: Lotte
+employeeNumber: 11
+telephoneNumber: +1 630 010 7714
+mobile: +1 505 494 7220
+sn: Mashura
+cn: Lotte Mashura
+userPassword: {SSHA256}F3FSILOiDF7X5MOMgsA0Pt1BjAyXlJrF5qEa+whhbRM7GsUo7UR+Pg==
+description: This is the description for Lotte Mashura.
+street: 41005 Franklin Street
+st: NE
+postalAddress: Lotte Mashura$41005 Franklin Street$Jackson, NE  22353
+uid: member.11
+l: Jackson
+postalCode: 22353
+entryUUID: 88cb4dbd-3cad-33d3-a022-9c93a80282d9
+
+dn: uid=member.12,ou=staff,dc=provsource,dc=net
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+mail: member.12@provsource.net
+initials: COA
+homePhone: +1 115 585 9263
+pager: +1 687 966 5553
+givenName: Chuan
+employeeNumber: 12
+telephoneNumber: +1 997 693 6232
+mobile: +1 990 301 0155
+sn: Andreasen
+cn: Chuan Andreasen
+userPassword: {SSHA256}sc7Z0mvgvukZrNO4tMbgXDGOuk0PHBZWXn60kBZzhY4tmlrtzshITw==
+description: This is the description for Chuan Andreasen.
+street: 81194 Maple Street
+st: ID
+postalAddress: Chuan Andreasen$81194 Maple Street$Fort Smith, ID  89353
+uid: member.12
+l: Fort Smith
+postalCode: 89353
+entryUUID: 8f057cab-aec5-3fd0-80ab-71a9c5a610ac
+
+dn: uid=member.13,ou=staff,dc=provsource,dc=net
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+mail: member.13@provsource.net
+initials: AIK
+homePhone: +1 351 444 0687
+pager: +1 422 680 0593
+givenName: Adena
+employeeNumber: 13
+telephoneNumber: +1 000 011 5556
+mobile: +1 300 845 8507
+sn: Kellogg
+cn: Adena Kellogg
+userPassword: {SSHA256}XEwomMZEa6JfFpo7KXVf7yFvEXfDuuiBhTATi2xHGEhPwLXL3GNm2w==
+description: This is the description for Adena Kellogg.
+street: 18303 Ash Street
+st: WI
+postalAddress: Adena Kellogg$18303 Ash Street$Duluth, WI  05228
+uid: member.13
+l: Duluth
+postalCode: 05228
+entryUUID: 6a30046f-bdbd-3452-b21a-b42f24639a18
+
+dn: uid=member.14,ou=staff,dc=provsource,dc=net
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+mail: member.14@provsource.net
+initials: DFS
+homePhone: +1 526 603 0906
+pager: +1 051 009 9160
+givenName: Demi
+employeeNumber: 14
+telephoneNumber: +1 304 046 1373
+mobile: +1 791 700 4321
+sn: Sanabria
+cn: Demi Sanabria
+userPassword: {SSHA256}hmVbLZIoBjBQZyvfKAp8g51t6kxPkHweca/g3xfnNBbYuBC1vcl20w==
+description: This is the description for Demi Sanabria.
+street: 88067 Mill Street
+st: WA
+postalAddress: Demi Sanabria$88067 Mill Street$Durham, WA  02328
+uid: member.14
+l: Durham
+postalCode: 02328
+entryUUID: 1dae1509-b041-3170-9e83-35aa9ec98bee
+
+dn: cn=UsersToProvision,ou=GroupsGroups,dc=provsource,dc=net
+objectClass: top
+objectClass: groupOfUniqueNames
+uniqueMember: uid=member.0,ou=staff,dc=provsource,dc=net
+uniqueMember: uid=member.1,ou=staff,dc=provsource,dc=net
+uniqueMember: uid=member.10,ou=staff,dc=provsource,dc=net
+uniqueMember: uid=member.11,ou=staff,dc=provsource,dc=net
+uniqueMember: uid=member.12,ou=staff,dc=provsource,dc=net
+cn: UsersToProvision
+ou: GroupsGroups
+createTimestamp: 20210112011500.338Z
+creatorsName: cn=Directory Manager,cn=Root DNs,cn=config
+entryUUID: c8b2071e-f5e8-428c-a11c-6534e4f4b3ae
+modifiersName: cn=Directory Manager,cn=Root DNs,cn=config
+modifyTimestamp: 20210112034555.492Z
+
+dn: uid=member.18,ou=ProvisioningContainer,ou=staff,dc=provsource,dc=net
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+mail: member.18@provsource.net
+initials: MRA
+homePhone: +1 265 428 1541
+pager: +1 027 852 0538
+givenName: Mot
+employeeNumber: 18
+telephoneNumber: +1 027 663 1061
+mobile: +1 707 000 9123
+sn: Arabadjis
+cn: Mot Arabadjis
+userPassword: {SSHA256}L8yc0gi1z+CQqIbK/J4BDxcSg1ilU/fiwm0Bn2RYfnO+/WU2I+C+Lg==
+description: This is the description for Mot Arabadjis.
+street: 91598 South Street
+st: IA
+postalAddress: Mot Arabadjis$91598 South Street$Florence, IA  04885
+l: Florence
+postalCode: 04885
+uid: member.18
+entryUUID: a9c95f25-5fc3-3861-985a-de776019ead9
+modifiersName: cn=Directory Manager,cn=Root DNs,cn=config
+modifyTimestamp: 20210112034632.038Z
+

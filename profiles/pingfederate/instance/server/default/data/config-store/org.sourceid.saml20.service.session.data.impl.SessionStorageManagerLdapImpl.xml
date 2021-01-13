@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c:config xmlns:c="http://www.sourceid.org/2004/05/config">
+    <c:item name="authnSessionGroupId">pf-auth-session-group-id</c:item>
+    <c:item name="authnSessionGroupHashedSessionId">f-auth-session-group-hashed-session-id</c:item>
+    <c:item name="authnSessionGroupExpiryTime">pf-auth-session-group-expiry-time</c:item>
+    <c:item name="authnSessionGroupLastActivityTime">pf-auth-session-group-last-activity-time</c:item>
+    <c:item name="authnSessionGroupParentId">pf-auth-session-group-parent-id</c:item>
+    <c:item name="authnSessionGroupMetdata">pf-auth-session-group-metadata</c:item>
+    <c:item name="authnSessionGroupUserIds">pf-auth-session-group-user-ids</c:item>
+    <c:item name="authnSessionData">pf-auth-session-data</c:item>
+    <!--Data store id-->
+    <!--LDAP search base. This should point to your Authentication Session location. Eg. OU=AuthenticationSessions,DC=example,DC=global-->
+    <c:item name="sessionAttributeHash">pf-auth-session-attribute-hash</c:item>
+</c:config>
