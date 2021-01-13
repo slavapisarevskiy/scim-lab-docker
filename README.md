@@ -1,5 +1,11 @@
 # PingFederate Outbound Provisioning and PingDirectory SCIMv1 and SCIMv2 Lab
 
+## This is almost the same lab I used in my Tech Talk: Provisioning with PingFederate
+
+* [Provisioning 101](https://drive.google.com/drive/folders/19QBZCeVEdGf5evvk9IfyEXUU8A59NCWL?usp=sharing)
+* [Provisioning 201](https://drive.google.com/drive/folders/1BWVO6D2UBjJ0EUWuhqjzK3Hs0WVwkNYo?usp=sharing)
+* [Provisioning Playbook](https://confluence.pingidentity.com/display/ST/Provisioning+Playbook)
+
 ### Servers:
 * PF 10
 * PD 8.2 with 2 separate Backends for provisioning source (dc=provsource,dc=net) and target (dc=example,dc=com) 
@@ -58,7 +64,7 @@ PingDataConsole (PD console):
 * https://locahost:8443/console
 
 
-##Start
+## Start
 
 To start lab you need Docker and docker-compose.
 
@@ -85,7 +91,7 @@ Later to start:
 Delete container and its volumes (complete reset) !don't forget -v otherwise docker volumes will be kept and next time you spin it it will not be fresh start:
 ```docker-compose down -v```
 
-###In order to see logs on your Mac and preserver you need to tweak docker file and create directry.
+### In order to see logs on your Mac and preserver you need to tweak docker file and create directry.
 
 By default containers use Docker's volumes which are not exposed to your Mac/machine.
 
@@ -119,7 +125,7 @@ Uncomment:
 
 Obviously you can modify path to any you like but make sure that directory (path - 1) exists. E.g.: "${HOME}/projects/scim-lab-docker" must exist, "pingdirectory-opt-out" will be created. 
 
-###Using only PD (no PF) as SCIM target:
+### Using the lab as SCIM target (only PD no PF) :
 You can just run docker-compose as above and access PD HTTP/HTTPS ports. Though if you like to save Mac resources you can remove PF. In order to do it just comment everything under services/pingfederate in docker-compose and reset.
 
 From:
@@ -136,4 +142,11 @@ Up to:
 ```
 
 ### Heapsize and performance
-PD and surprisingly PF can be slow in docker environment. So be patient especially with UI. You can see that in docker-compose.yaml I deliberatly increased MAX_HEAP_SIZE parameter up to 2048 Mb. You can adjust it for your self or completely remove it - in this case heap will be an image default.  
+PD and surprisingly PF can be slow in docker environment. So be patient especially with UI. You can see that in docker-compose.yaml I deliberatly increased MAX_HEAP_SIZE parameter up to 2048 Mb. You can adjust it for your self or completely remove it - in this case heap will be an image default.
+
+## Known limitations
+Because this lab uses Built-in HyperSQL DB for provisioning there could be some weird behaviour. Ideally it is better to use external MySQL or Postgres.
+
+For known issues see: 
+* https://support.pingidentity.com/s/article/Provisioning-CLI-database-in-use
+* Jira STAGING-11004
